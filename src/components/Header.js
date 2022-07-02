@@ -40,9 +40,11 @@ const Header = () => {
 			mb="100px"
 			fontSize="16px"
 		>
-			<Text fontWeight="900" style={{ fontFamily: 'cursive' }} fontSize="18px">
-				Artik
-			</Text>
+			<Link to="/">
+				<Text fontWeight="900" style={{ fontFamily: 'cursive' }} fontSize="18px">
+					Artik
+				</Text>
+			</Link>
 
 			<Flex
 				w={{ sm: '50%', md: '40%', lg: '35%' }}

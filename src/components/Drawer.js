@@ -30,7 +30,9 @@ const SideDrawer = ({isOpen, onClose, btnRef}) =>  {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>
-            <Text fontWeight="900" style={{fontFamily:"cursive"}} fontSize="18px">Artik</Text>
+            <Link to="/">
+              <Text fontWeight="900" style={{fontFamily:"cursive"}} fontSize="18px">Artik</Text>
+            </Link>
           </DrawerHeader>
 
           <DrawerBody>
@@ -67,7 +69,7 @@ const SideDrawer = ({isOpen, onClose, btnRef}) =>  {
           </DrawerBody>
 
           <DrawerFooter>
-            &copy;2022 With ❤️️from Team Artik 
+            &copy;2022 With ❤️️ from Team Artik 
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
