@@ -49,10 +49,10 @@ const Header = () => {
 
 			<Flex
 				w={{ sm: '50%', md: '40%', lg: '35%' }}
-				justify="space-around"
 				alignItems="center"
+				justify="flex-end"
 			>
-				<ColorModeSwitcher justifySelf="flex-end" mr={3} display={window.location.pathname==="/" ? "none" : "block"}/>
+				<ColorModeSwitcher justifySelf="flex-end" mr={3} />
 				<Box
 					display={{ base: 'block', md: 'none' }}
 					fontSize="20px"

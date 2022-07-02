@@ -121,7 +121,7 @@ const Card = styled.div`
   width: 30%;
   height: auto;
   padding-bottom:50px;
-  background: white;
+  // background: white;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   justify-content: center;
