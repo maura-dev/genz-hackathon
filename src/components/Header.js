@@ -74,6 +74,10 @@ const Header = () => {
 						<Text mr={5}>Artisans</Text>
 					</Link>{' '}
 					&nbsp;
+					<Link to="/jobs">
+						<Text mr={5}>Jobs</Text>
+					</Link>{' '}
+					&nbsp;
 					{isLoggedIn ? (
 						<Flex alignItems="center">
 							<Avatar size="md" name="Anonymous User" mr={1} />
