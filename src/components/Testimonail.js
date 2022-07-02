@@ -119,7 +119,8 @@ const CardWrapper = styled.div`
 const Card = styled.div`
   margin: 10px;
   width: 30%;
-  height: 260px;
+  height: auto;
+  padding-bottom:50px;
   background: white;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;

@@ -39,6 +39,7 @@ const Header = () => {
 			bg={background}
 			mb="100px"
 			fontSize="16px"
+			boxShadow={{ base: 'none', md: '0px 1px 14px rgba(0, 0, 0, 0.1)' }}
 		>
 			<Link to="/">
 				<Text fontWeight="900" style={{ fontFamily: 'cursive' }} fontSize="18px">
@@ -51,7 +52,7 @@ const Header = () => {
 				justify="space-around"
 				alignItems="center"
 			>
-				<ColorModeSwitcher justifySelf="flex-end" mr={3} />
+				<ColorModeSwitcher justifySelf="flex-end" mr={3} display={window.location.pathname==="/" ? "none" : "block"}/>
 				<Box
 					display={{ base: 'block', md: 'none' }}
 					fontSize="20px"
@@ -66,11 +67,11 @@ const Header = () => {
 					alignItems="center"
 				>
 					<Link to="/register">
-						<Text mr={3}>Register</Text>
+						<Text mr={5}>Register</Text>
 					</Link>{' '}
 					&nbsp;
 					<Link to="/artisans">
-						<Text mr={3}>Artisans</Text>
+						<Text mr={5}>Artisans</Text>
 					</Link>{' '}
 					&nbsp;
 					{isLoggedIn ? (
