@@ -3,7 +3,7 @@ import { Box, Grid, useColorModeValue } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header';
 import SignUp from "./pages/Signup";
-import SignUpAsUser from "./pages/Signup2"
+import SignIn from "./pages/Signin";
 function App() {
   const background= useColorModeValue("bg","BlackAlpha 700" )
   return (
@@ -12,8 +12,8 @@ function App() {
         <Grid minH="100vh" bg={background}>
           <Header />
           <Routes>
-          <Route path="/user-register" element={<SignUpAsUser />}></Route>
-          <Route exact path="/artisan-register" element={<SignUp />}></Route>
+          <Route path="/login" element={<SignIn />}></Route>
+          <Route exact path="/register" element={<SignUp />}></Route>
         </Routes>
         </Grid>
       </Box>

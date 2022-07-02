@@ -20,6 +20,7 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 const SignUp = () => {
 	const alt = useColorModeValue('white', 'black');
 	const focus = useColorModeValue('#edf2f7', '#171923');
+	// const ghost =useColorModeValue('')
 	return (
 		<Flex
 			w={{base:"100%", md:"90%",lg:"80%"}}
@@ -36,7 +37,7 @@ const SignUp = () => {
 			</Box>
 			<Box w={{base:"100%",md:"50%"}} bg={alt} p={5} borderTopRightRadius={{base:"0px",md:"10px"}} borderBottomRightRadius={{base:"0px",md:"10px"}}>
 				<Heading fontWeight="700" fontSize="25px" mb={5}>
-					Register as an Artisan
+					Register on Artik
 				</Heading>
 				<Box textAlign="left">
 					<Text mb={2}>First name</Text>
@@ -110,10 +111,14 @@ const SignUp = () => {
 						/>
 						<Input type="password" placeholder="Confirm Password" focusBorderColor="primary"/>
 					</InputGroup>
-					<Button bg="primary" color={alt} w="100%">
-					{' '}
-					Register
-				</Button>
+					<Button bg="primary" color={alt} w="100%" mb={3}>
+						{' '}
+						Register as Artisan
+					</Button>
+					<Button mb={3} border="1px solid" borderColor="primary" bg="transparent" color="primary" w="100%">
+						{' '}
+						Register as User
+					</Button>
 				</Box>
 			</Box>
 		</Flex>
