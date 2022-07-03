@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdDashboard } from 'react-icons/md';
 import {
-  AiFillFormatPainter,
   AiTwotoneEdit,
   AiTwotoneFile,
 } from 'react-icons/ai';
@@ -10,32 +9,18 @@ import {
 import img from './gift.png';
 import { NavLink } from 'react-router-dom';
 
-const DashNav = () => {
+const ArtisianNav = () => {
   return (
     <Container>
       <Wrapper>
         <Logo>Artik</Logo>
         <NavHolder>
-          <NavAndIcon to={`/dash/overview`}>
+          <NavAndIcon to={`/dash/art/overview`}>
             <IconAndText>
               <MdDashboard />
               <Text>DashBoard</Text>
             </IconAndText>
-            <Line to={`/dash/overview`}></Line>
-          </NavAndIcon>
-          <NavAndIcon to={`/dash/postjob`}>
-            <IconAndText>
-              <AiFillFormatPainter />
-              <Text>Post A Job</Text>
-            </IconAndText>
-            <Line to={`/dash/postjob`}></Line>
-          </NavAndIcon>
-          <NavAndIcon to={`/dash/allservices`}>
-            <IconAndText>
-              <AiFillFormatPainter />
-              <Text>Our Services</Text>
-            </IconAndText>
-            <Line to={`/dash/allservices`}></Line>
+            <Line to={`/dash/art/overview`}></Line>
           </NavAndIcon>
           <NavAndIcon to={`/dash/editprofile`}>
             <IconAndText>
@@ -47,7 +32,7 @@ const DashNav = () => {
           <NavAndIcon to={`/dash/blog`}>
             <IconAndText>
               <AiTwotoneFile />
-              <Text>View Blog Page</Text>
+              <Text>View Booked Page</Text>
             </IconAndText>
             <Line to={`/dash/blog`}></Line>
           </NavAndIcon>
@@ -65,7 +50,7 @@ const DashNav = () => {
   );
 };
 
-export default DashNav;
+export default ArtisianNav;
 
 const Image = styled.img`
   width: 200px;

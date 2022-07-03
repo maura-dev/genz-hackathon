@@ -1,23 +1,75 @@
+// import axios from 'axios';
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
-import { BiNetworkChart } from 'react-icons/bi';
+import { BiNetworkChart, BiSearch } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
 import { GrUserWorker } from 'react-icons/gr';
 import { MdWork } from 'react-icons/md';
+import { 
+    useNavigate,
+    //  useParams
+ } from 'react-router';
 import styled from 'styled-components';
 import img from '../images/man.jpg';
 import DashNav from './DashNav';
-import SearchHeader from './SearchHeader';
 
 const DashSearchHandy = () => {
+//   const { skill } = useParams();
+  const [search, setSearch] = React.useState('');
+
+  const navigate = useNavigate();
+
+//   const [allData, setAllData] = React.useState([]);
+
+
+//   const [locationData, setLocationData] = React.useState([]);
+
+//   const fetchData = async () => {
+//     const config = {
+//       authorization: `Bearer ${''}`,
+//     };
+//     const url = 'http://artikapp.herokuapp.com';
+//     const res = await axios.get(`${url}/api/v1/artisan/find/${skill}`, config, {
+//       skill: search,
+//     });
+//     setAllData(res?.data);
+//   };
+
+  //   const searchFunction = async () => {};
+
+  const onToggle = id => {
+    navigate(`/beforehire/${'i'}`);
+  };
+
+//   React.useEffect(() => {
+//     fetchData();
+//     // console.log(allData);
+//   }, []);
+
   return (
     <Container>
       <DashNav />
       <DashComp>
-        {/* <DashHeader /> */}
-        <SearchHeader />
+        <Container1>
+          <Wrapper1>
+            <Name>All Engineerers</Name>
+            <SearchComp>
+              <Input
+                placeholder="Search By Location"
+                value={search}
+                onChange={e => {
+                  setSearch(e.target.value);
+                }}
+              />
+              <Button2>
+                <BiSearch />
+              </Button2>
+            </SearchComp>
+          </Wrapper1>
+        </Container1>
         <DashWrapper>
           <FirstCardHolder>
+            {/* {allData?.map(props => ( */}
             <Card>
               <Image src={img} />
               <ClientDetails>
@@ -46,10 +98,17 @@ const DashSearchHandy = () => {
                     <AiFillStar color="#3ddabe" fontSize="20px" />
                     <AiFillStar color="#3ddabe" fontSize="20px" />
                   </RatingHolder>
-                  <HireButton>Hire Me</HireButton>
+                  <HireButton
+                    onClick={() => {
+                      onToggle('i');
+                    }}
+                  >
+                    Hire Me
+                  </HireButton>
                 </RatingAndButton>
               </ClientDetails>
             </Card>
+            {/* ))} */}
           </FirstCardHolder>
         </DashWrapper>
       </DashComp>
@@ -58,6 +117,52 @@ const DashSearchHandy = () => {
 };
 
 export default DashSearchHandy;
+
+const Button2 = styled.div`
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: white;
+  background: #3ddabe;
+`;
+const Input = styled.input`
+  padding: 6px 14px;
+  display: flex;
+  flex: 1;
+  outline: none;
+  color: black;
+  border: none;
+  background: none;
+  font-size: 14px;
+`;
+
+const SearchComp = styled.div`
+  display: flex;
+  width: 300px;
+  height: 40px;
+  color: white;
+  background: rgba(61, 218, 190, 0.4);
+`;
+const Name = styled.div`
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 600;
+`;
+const Wrapper1 = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+`;
+const Container1 = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+`;
 
 const HireButton = styled.div`
   width: 150px;
@@ -140,6 +245,7 @@ const Container = styled.div`
   display: flex;
   width: 100vw;
   align-items: flex-end;
+  position: absolute;
 
   min-height: 100vh;
   justify-content: space-between;

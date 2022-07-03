@@ -4,7 +4,7 @@ import DashHeader from './DashHeader';
 import img from '../images/man.jpg';
 import DashNav from './DashNav';
 
-const DashOverview = () => {
+const ArtisianOverview = () => {
   return (
     <Container>
       <DashNav />
@@ -27,7 +27,7 @@ const DashOverview = () => {
             <Card>
               <CardWrapper>
                 <TextContents>
-                  <TotalText>Total Jobs Posted</TotalText>
+                  <TotalText>Total Project Done</TotalText>
                   <Amoutn>19</Amoutn>
                   <Join>
                     <span>Recent:</span>5days ago
@@ -39,7 +39,7 @@ const DashOverview = () => {
             <Card>
               <CardWrapper>
                 <TextContents>
-                  <TotalText>Total Hiring</TotalText>
+                  <TotalText>Total Bookings</TotalText>
                   <Amoutn>5</Amoutn>
                   <Join>
                     <span>Recent:</span>2days ago
@@ -50,7 +50,7 @@ const DashOverview = () => {
             </Card>
           </FirstCardHolder>
           <SecondCardHolder>
-            <SecondTitle>Recent Posted Jobs</SecondTitle>
+            <SecondTitle>Recent Completed Jobs</SecondTitle>
             <SecondCard>
               <SecondImage src={img} />
               <ClientName>Confidence Efem</ClientName>
@@ -64,7 +64,7 @@ const DashOverview = () => {
   );
 };
 
-export default DashOverview;
+export default ArtisianOverview;
 
 const Amount = styled.div`
   display: flex;
