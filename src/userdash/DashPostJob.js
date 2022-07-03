@@ -3,32 +3,74 @@ import styled from 'styled-components';
 import DashHeader from './DashHeader';
 import DashNav from './DashNav';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
-const DashPostJob = () => {
+const DashPostJob = ({ user }) => {
+  console.log(user);
+
+  const navigate = useNavigate();
   const [location, setLocation] = React.useState('');
   const [cost, setCost] = React.useState();
   const [deadline, setDeadline] = React.useState('');
   const [detail, setDetail] = React.useState('');
 
   const onSubmitform = async () => {
-    console.log(location, cost, deadline, detail);
-    setDetail('');
+    console.log(user.jwtToken);
+    // console.log(location, cost, deadline, detail);
+    if (location === '' || cost === '' || deadline === '' || detail === '') {
+      Swal.fire({
+        icon: 'error',
+        position: 'center',
+        title: 'Data not found',
+        text: 'Input your Datas',
+        timer: 2500,
+      });
+    } else {
+      try {
+        const config = {
+          headers: {
+            authorization: `Bearer ${user?.jwtToken}`,
+          },
+        };
+
+        const url = 'http://artikapp.herokuapp.com';
+        const res = await axios.post(
+          `${url}/api/v1/auth/post-job`,
+          {
+            jobDetails: detail,
+            cost: cost,
+            deadline: deadline,
+            location: location,
+          },
+          config
+        );
+        if (res) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Job Created successfully',
+            // text: 'Input your Datas',
+            timer: 2500,
+            showConfirmButton: true,
+          }).then(() => {
+            navigate(`/dash/overview`);
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Eror',
+          text: error,
+          timer: 2500,
+          showConfirmButton: false,
+        });
+      }
+    }
+
+    setCost('');
     setLocation('');
     setDeadline('');
     setDetail('');
-
-    const config = {
-      authorization: `Bearer ${''}`,
-    };
-
-    const url = 'http://artikapp.herokuapp.com/';
-    const res = await axios.post(`${url}/api/v1/auth/post-job`, config, {
-      jobDetails: detail,
-      cost: cost,
-      deadline: deadline,
-      location: location,
-    });
-    console.log(res);
   };
 
   return (
@@ -75,7 +117,7 @@ const DashPostJob = () => {
             <InputHolder1>
               <Text1>Detail*:</Text1>
               <TextArea
-                placeholder="Enter Phone"
+                placeholder="What help are you looking for"
                 value={detail}
                 onChange={e => {
                   setDetail(e.target.value);

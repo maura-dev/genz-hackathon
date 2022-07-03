@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DashHeader from './DashHeader';
-import img from '../images/man.jpg';
 import DashNav from './DashNav';
+import axios from 'axios';
 
-const DashOverview = () => {
+const DashOverview = ({ user, setUser }) => {
+  // console.log(user);
+
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user?.jwtToken}`,
+      },
+    };
+    const res = await axios.get(
+      `http://artikapp.herokuapp.com/api/v1/job/all-job`,
+      config
+    );
+    // console.log(res);
+    setData(res.data);
+  };
+  useEffect(() => {
+    fetchData();
+    console.log(data);
+  }, [data]);
+
   return (
     <Container>
       <DashNav />
       <DashComp>
-        <DashHeader />
+        <DashHeader user={user} setUser={setUser} />
         <DashWrapper>
           <FirstCardHolder>
             <Card>
@@ -28,7 +50,7 @@ const DashOverview = () => {
               <CardWrapper>
                 <TextContents>
                   <TotalText>Total Jobs Posted</TotalText>
-                  <Amoutn>19</Amoutn>
+                  <Amoutn>{data?.length}</Amoutn>
                   <Join>
                     <span>Recent:</span>5days ago
                   </Join>
@@ -51,12 +73,14 @@ const DashOverview = () => {
           </FirstCardHolder>
           <SecondCardHolder>
             <SecondTitle>Recent Posted Jobs</SecondTitle>
-            <SecondCard>
-              <SecondImage src={img} />
-              <ClientName>Confidence Efem</ClientName>
-              <ProjectName>Fixing Electric Fan</ProjectName>
-              <Amount>$5000</Amount>
-            </SecondCard>
+            {data?.map(props => (
+              <SecondCard>
+                {/* <SecondImage src={} /> */}
+                <ClientName>{props.details}</ClientName>
+                <ProjectName>{props.deadline}</ProjectName>
+                <Amount>${props.cost}</Amount>
+              </SecondCard>
+            ))}
           </SecondCardHolder>
         </DashWrapper>
       </DashComp>
@@ -86,12 +110,12 @@ const ClientName = styled.div`
   display: flex;
   flex: 1;
 `;
-const SecondImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 0 15px;
-`;
+// const SecondImage = styled.img`
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   margin: 0 15px;
+// `;
 const SecondTitle = styled.div`
   font-size: 20px;
   font-weight: 600;

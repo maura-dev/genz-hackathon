@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import SignUp from './pages/Signup';
 import SignIn from './pages/Signin';
-import Dashboard from './pages/Dashboard';
 import Landingpage from './pages/Landingpage';
 import './App.css';
 import DashOverview from './userdash/DashOverview';
@@ -36,32 +35,63 @@ function App() {
           <Header user={user} setUser={setUser} />
           <Routes>
             <Route exact path="/" element={<Landingpage />}></Route>
-            <Route exact path="/dashboard" element={<Dashboard />}></Route>
             <Route
               exact
               path="/login"
               element={<SignIn setUser={setUser} />}
             ></Route>
-            <Route exact path="/register" element={<SignUp />}></Route>
+            <Route
+              exact
+              path="/register"
+              element={<SignUp user={user} setUser={setUser} />}
+            ></Route>
 
-            <Route exact path="/dash/overview" element={<DashOverview />} />
-            <Route exact path="/dash/postjob" element={<DashPostJob />} />
-            <Route exact path="/dash/allservices" element={<DashService />} />
+            <Route
+              exact
+              path="/dash/overview"
+              element={<DashOverview user={user} setUser={setUser} />}
+            />
+            <Route
+              exact
+              path="/dash/postjob"
+              element={<DashPostJob user={user} setUser={setUser} />}
+            />
+            <Route
+              exact
+              path="/dash/allservices"
+              element={<DashService user={user} setUser={setUser} />}
+            />
             <Route
               exact
               path="/dash/editprofile"
-              element={<DashEditProfile />}
+              element={<DashEditProfile user={user} setUser={setUser} />}
             />
-            <Route exact path="/dash/blog" element={<DashBlogPage />} />
+            <Route
+              exact
+              path="/dash/blog"
+              element={<DashBlogPage user={user} setUser={setUser} />}
+            />
             <Route
               exact
               path="/dash/allskill/:skill"
-              element={<DashSearchHandy />}
+              element={<DashSearchHandy user={user} setUser={setUser} />}
             />
             <Route exact path="/artisans" element={<Artisans />} />
-            <Route exact path="/beforehire/:id" element={<BeforeHiring />} />
-            <Route exact path="/art" element={<ArtisianOverview />} />
-            <Route exact path="/all-booked" element={<DashArtBooked />} />
+            <Route
+              exact
+              path="/beforehire/:id"
+              element={<BeforeHiring user={user} setUser={setUser} />}
+            />
+            <Route
+              exact
+              path="/art"
+              element={<ArtisianOverview user={user} setUser={setUser} />}
+            />
+            <Route
+              exact
+              path="/all-booked"
+              element={<DashArtBooked user={user} setUser={setUser} />}
+            />
           </Routes>
         </Grid>
       </Box>

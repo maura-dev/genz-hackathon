@@ -2,11 +2,11 @@ import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 import styled from 'styled-components';
 
-const DashHeader = () => {
+const DashHeader = ({user,setUser}) => {
   return (
     <Container>
       <Wrapper>
-        <Name>Welcome confidence Efem</Name>
+        <Name>Welcome {user?.user?.firstName} {user?.user?.lastName}</Name>
         <SearchComp>
           <Input placeholder="Search Input" />
           <Button>

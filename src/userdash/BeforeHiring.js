@@ -16,7 +16,7 @@ const BeforeHiring = () => {
   const [detail, setDetail] = React.useState('');
 
   const HireFunction = async () => {
-    console.log(location, cost, address, detail);
+    // console.log(location, cost, address, detail);
     if (location === '' || cost === '' || address === '' || detail === '') {
       Swal.fire({
         icon: 'error',
