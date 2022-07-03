@@ -1,6 +1,18 @@
 import React from 'react';
-import { AiFillCalendar, AiFillCreditCard, AiFillDatabase, AiFillFilter, AiFillGolden, AiFillHtml5, AiFillMediumCircle, AiFillMoneyCollect, AiFillProject, AiFillSlackCircle, AiFillTablet, AiFillVideoCamera } from 'react-icons/ai';
-// import { GrInstall } from 'react-icons/gr';
+import {
+  AiFillCalendar,
+  AiFillCreditCard,
+  AiFillDatabase,
+  AiFillFilter,
+  AiFillGolden,
+  AiFillHtml5,
+  AiFillMediumCircle,
+  AiFillMoneyCollect,
+  AiFillProject,
+  AiFillSlackCircle,
+  AiFillTablet,
+  AiFillVideoCamera,
+} from 'react-icons/ai';
 import styled from 'styled-components';
 
 const Service = () => {
@@ -186,7 +198,7 @@ const CardHolder = styled.div`
   display: flex;
   margin-top: 40px;
   flex-wrap: wrap;
-  justify-content:space-around;
+  justify-content: space-around;
 `;
 const Line = styled.div`
   /* border: 3px solid #3ddabe; */
@@ -219,8 +231,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   /* min-height: 84vh; */
-  height:auto;
-  padding:50px 0px;
+  height: auto;
+  padding: 50px 0px;
   // font-family: poppins;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-top: 30px;
