@@ -14,7 +14,7 @@ const DashNav = () => {
   return (
     <Container>
       <Wrapper>
-        <Logo>Artik</Logo>
+        <Logo style={{ opacity: '0' }}>Artik</Logo>
         <NavHolder>
           <NavAndIcon to={`/dash/overview`}>
             <IconAndText>
@@ -47,7 +47,7 @@ const DashNav = () => {
           <NavAndIcon to={`/dash/blog`}>
             <IconAndText>
               <AiTwotoneFile />
-              <Text>View Blog Page</Text>
+              <Text>View All Bookings</Text>
             </IconAndText>
             <Line to={`/dash/blog`}></Line>
           </NavAndIcon>

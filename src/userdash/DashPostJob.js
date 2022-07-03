@@ -22,7 +22,12 @@ const DashPostJob = () => {
     };
 
     const url = 'http://artikapp.herokuapp.com/';
-    const res = await axios.post(`${url}/api/v1/auth/post-job`, config);
+    const res = await axios.post(`${url}/api/v1/auth/post-job`, config, {
+      jobDetails: detail,
+      cost: cost,
+      deadline: deadline,
+      location: location,
+    });
     console.log(res);
   };
 

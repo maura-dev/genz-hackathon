@@ -2,13 +2,13 @@ import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 import styled from 'styled-components';
 
-const SearchHeader = () => {
+const DashHeader = () => {
   return (
     <Container>
       <Wrapper>
-        <Name>All Engineerers</Name>
+        <Name>Welcome confidence Efem</Name>
         <SearchComp>
-          <Input placeholder="Search By Location" />
+          <Input placeholder="Search Input" />
           <Button>
             <BiSearch />
           </Button>
@@ -18,7 +18,7 @@ const SearchHeader = () => {
   );
 };
 
-export default SearchHeader;
+export default DashHeader;
 
 const Button = styled.div`
   width: 50px;
@@ -35,7 +35,7 @@ const Input = styled.input`
   display: flex;
   flex: 1;
   outline: none;
-  color: black;
+  color: white;
   border: none;
   background: none;
   font-size: 14px;
