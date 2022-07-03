@@ -125,6 +125,9 @@ const TextArea = styled.textarea`
   font-size: 15px;
   font-weight: 500;
   border-radius: 7px;
+  :focus {
+    border: 2px solid #3ddabe;
+  }
   ::placeholder {
     ::placeholder {
       font-size: 12px;
@@ -144,6 +147,9 @@ const Input = styled.input`
   font-weight: 500;
   border-radius: 7px;
   padding: 10px;
+  :focus {
+    border: 2px solid #3ddabe;
+  }
   ::placeholder {
     font-size: 12px;
   }
