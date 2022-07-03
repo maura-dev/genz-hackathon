@@ -12,6 +12,8 @@ import DashPostJob from './userdash/DashPostJob';
 import DashService from './userdash/DashService';
 import DashEditProfile from './userdash/DashEditProfile';
 import DashBlogPage from './userdash/DashBlogPage';
+import Artisans from './pages/Artisans';
+
 function App() {
   const background = useColorModeValue('bg', 'BlackAlpha 700');
   return (
@@ -24,15 +26,17 @@ function App() {
             <Route exact path="/dashboard" element={<Dashboard />}></Route>
             <Route exact path="/login" element={<SignIn />}></Route>
             <Route exact path="/register" element={<SignUp />}></Route>
+
+            <Route exact path="/dash/overview" element={<DashOverview />} />
+            <Route exact path="/dash/postjob" element={<DashPostJob />} />
+            <Route exact path="/dash/allservices" element={<DashService />} />
             <Route
               exact
-              path="/dash/overview"
-              element={<DashOverview />}
+              path="/dash/editprofile"
+              element={<DashEditProfile />}
             />
-            <Route exact path="/dash/postjob" element={<DashPostJob />}/>
-            <Route exact path="/dash/allservices" element={<DashService />}/>
-            <Route exact path="/dash/editprofile" element={<DashEditProfile />}/>
-            <Route exact path="/dash/blog" element={<DashBlogPage />}/>
+            <Route exact path="/dash/blog" element={<DashBlogPage />} />
+            <Route exact path="/artisans" element={<Artisans />}></Route>
           </Routes>
         </Grid>
       </Box>

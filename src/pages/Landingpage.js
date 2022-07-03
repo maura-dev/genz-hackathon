@@ -9,7 +9,7 @@ import Testimonail from '../components/Testimonail';
 
 const Landingpage = () => {
   return (
-    <div style={{ width: '100%', marginTop:"80px"}}>
+    <div style={{ width: '100%', marginTop:"80px", backgroundColor:"inherit"}}>
       <HeroPage />;
       <HowWork />
       <About />
