@@ -1,6 +1,5 @@
-import React, { 
-  // useState 
-} from 'react';
+import React from // useState
+'react';
 
 import DashNav from './DashNav';
 import DashHeader from './DashHeader';
@@ -14,7 +13,13 @@ const DashBlogPage = () => {
   // const fetchData = async () => {
   //   const url = "http://artikapp.herokuapp.com"
   //   const res = await axios.get(`${url}/`)
+  //   setData(res)
   // }
+
+  // React.useEffect(()=>{
+  //   fetchData()
+  //   console.log(data)
+  // },[])
   return (
     <Container>
       <DashNav />
@@ -23,7 +28,7 @@ const DashBlogPage = () => {
         <DashWrapper>
           <Title>All booked Page</Title>
           <HoldAllBook>
-          <SecondCard>
+            <SecondCard>
               <SecondImage src={img} />
               <ClientName>Confidence Efem</ClientName>
               <ProjectName>Fixing Electric Fan</ProjectName>
@@ -37,7 +42,6 @@ const DashBlogPage = () => {
 };
 
 export default DashBlogPage;
-
 
 const Amount = styled.div`
   display: flex;
@@ -78,19 +82,19 @@ const SecondCard = styled.div`
 `;
 
 const HoldAllBook = styled.div`
-width: 100%;
-display:flex;
-`
+  width: 100%;
+  display: flex;
+`;
 const Title = styled.div`
-font-size: 18px;
-font-weight: 600;
-margin: 20px 0;
-`
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px 0;
+`;
 const DashWrapper = styled.div`
   width: 90%;
-  display:flex;
+  display: flex;
   align-items: center;
-  flex-direction:column;
+  flex-direction: column;
 `;
 const DashComp = styled.div`
   width: calc(100vw - 40px);

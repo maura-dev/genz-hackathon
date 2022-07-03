@@ -11,9 +11,9 @@ import { BiSearch } from 'react-icons/bi';
 const DashService = () => {
   const navigate = useNavigate();
 
-  const searchSkillFunction = async () => {
-    navigate(`/dash/allskill`);
-  };
+  // const searchSkillFunction = async () => {
+  //   navigate(`/dash/allskill`);
+  // };
 
   return (
     <Container>
