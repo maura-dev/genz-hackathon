@@ -92,6 +92,8 @@ const SignIn = ({setUser}) => {
 								setSubmitting(false)
 								resetForm()
 								navigate("/dashboard")
+								window.location.reload()
+
 							})
 							.catch(err => {
 								toast({
