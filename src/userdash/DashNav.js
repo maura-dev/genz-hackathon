@@ -131,7 +131,7 @@ const Container = styled.div`
   width: 400px;
   background-color: white;
   display: flex;
-  height: 100vh;
+  height: 100%;
   justify-content: flex-end;
   box-shadow: 1px 1px 1px lightgray;
 `;
