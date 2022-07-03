@@ -11,20 +11,55 @@ import {
 	Avatar,
 	Box,
 	useDisclosure,
+	useToast,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { HamburgerIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import SideDrawer from './Drawer';
 
-const Header = () => {
+const Header = ({user, setUser}) => {
+	const toast = useToast()
 	const navigate = useNavigate();
 	const background = useColorModeValue('white', 'black');
 	const menu = useColorModeValue('WhiteAlpha.100', 'BlackAlpha.200');
 	const focus = useColorModeValue('#edf2f7', '#171923');
-	const isLoggedIn = false;
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const btnRef = useRef();
+	const handleLogout = () => {
+		fetch("https://artikapp.herokuapp.com/api/v1/auth/logout" ,{
+			method:'POST',
+			body:JSON.stringify({
+				refreshToken: user?.jwt 
+			}),
+			headers:{
+				'Content-Type':'application/json'
+			}
+		})
+		.then(response => response.text())
+		.then(res => {
+			toast({
+				title:"Successful",
+				description:"You have logged out of Artik",
+				status:"success",
+				duration:2000,
+				isClosable:true
+			})
+			localStorage.removeItem("artikLoggedUser")
+			setUser({})
+			navigate("/")
+		})
+		.catch(err => {
+			toast({
+				title:"Opps!",
+				description: err,
+				status:"error",
+				duration:3000,
+				isClosable:true
+			})
+		})
+	}
+
 	return (
 		<Flex
 			w="100%"
@@ -48,7 +83,7 @@ const Header = () => {
 			</Link>
 
 			<Flex
-				w={{ sm: '50%', md: '40%', lg: '35%' }}
+				w={{ sm: '60%', md: '50%', lg: '40%' }}
 				alignItems="center"
 				justify="flex-end"
 			>
@@ -78,13 +113,13 @@ const Header = () => {
 						<Text mr={5}>Jobs</Text>
 					</Link>{' '}
 					&nbsp;
-					{isLoggedIn ? (
+					{user && user.jwtToken ? (
 						<Flex alignItems="center">
-							<Avatar size="md" name="Anonymous User" mr={1} />
+							<Avatar size="md" name={`${user.user.firstName} ${user.user.lastName}`} mr={1} />
 							<Text fontSize="16px" lineHeight="normal" mb={1}>
-								Anonymous User
+								{user.user.firstName}&nbsp; {user.user.lastName}
 							</Text>
-							&nbsp; &nbsp;
+							&nbsp;
 							<Menu>
 								<MenuButton>
 									<ChevronDownIcon />
@@ -101,8 +136,9 @@ const Header = () => {
 										bg={menu}
 										_focus={{ bg: focus }}
 										_active={{ bg: { base: '#18183d', md: '#e2e8f0' } }}
+										onClick={handleLogout}
 									>
-										<Link to="/logout">Logout</Link>
+										Logout
 									</MenuItem>
 								</MenuList>
 							</Menu>
@@ -119,7 +155,7 @@ const Header = () => {
 					)}
 				</Box>
 			</Flex>
-			<SideDrawer onClose={onClose} isOpen={isOpen} btnRef={btnRef} />
+			<SideDrawer onClose={onClose} isOpen={isOpen} btnRef={btnRef} user={user} handleLogout={handleLogout}/>
 		</Flex>
 	);
 };
