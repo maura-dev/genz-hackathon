@@ -74,12 +74,11 @@ const SignIn = ({setUser}) => {
 					 	fetch("https://artikapp.herokuapp.com/api/v1/auth/login",{
 								method:'POST',
 								body:JSON.stringify(values),
-								headers:{
-									'Content-Type':'application/json'
-								}
+								headers:{'Content-Type':'application/json'}
 							})
-							.then(res => res.text())
+							.then(response => response.text())
 							.then(res => {
+								// console.log(res)
 								localStorage.setItem("artikLoggedUser", res)
 								setUser(res)
 								toast({
@@ -96,6 +95,7 @@ const SignIn = ({setUser}) => {
 
 							})
 							.catch(err => {
+								// console.log(err)
 								toast({
 									title:"Opps!",
 									description: err,

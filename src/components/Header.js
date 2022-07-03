@@ -27,11 +27,12 @@ const Header = ({user, setUser}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const btnRef = useRef();
 	const handleLogout = () => {
+		const body = {
+			refreshToken: user?.jwtToken
+		}
 		fetch("https://artikapp.herokuapp.com/api/v1/auth/logout" ,{
 			method:'POST',
-			body:JSON.stringify({
-				refreshToken: user?.jwt 
-			}),
+			body:JSON.stringify(body),
 			headers:{
 				'Content-Type':'application/json'
 			}
