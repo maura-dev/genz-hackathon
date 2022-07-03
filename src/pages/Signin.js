@@ -22,6 +22,7 @@ const SignIn = ({ setUser }) => {
   const focus = useColorModeValue('#edf2f7', '#171923');
   const toast = useToast();
   const navigate = useNavigate();
+
   //validation schema for input fields
   const validationSchema = yup.object().shape({
     login: yup.string().email('Email is invalid').required('Email is required'),
@@ -70,12 +71,11 @@ const SignIn = ({ setUser }) => {
             fetch('https://artikapp.herokuapp.com/api/v1/auth/login', {
               method: 'POST',
               body: JSON.stringify(values),
-              headers: {
-                'Content-Type': 'application/json',
-              },
+              headers: { 'Content-Type': 'application/json' },
             })
-              .then(res => res.text())
+              .then(response => response.text())
               .then(res => {
+                // console.log(res)
                 localStorage.setItem('artikLoggedUser', res);
                 setUser(res);
                 toast({
@@ -87,9 +87,11 @@ const SignIn = ({ setUser }) => {
                 });
                 setSubmitting(false);
                 resetForm();
-                navigate(`/dash/overview`);
+                navigate('/dash/overview');
+                window.location.reload();
               })
               .catch(err => {
+                // console.log(err)
                 toast({
                   title: 'Opps!',
                   description: err,

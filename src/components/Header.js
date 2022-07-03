@@ -18,47 +18,51 @@ import { HamburgerIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import SideDrawer from './Drawer';
 
-const Header = ({ user, setUser }) => {
-  const toast = useToast();
-  const navigate = useNavigate();
-  const background = useColorModeValue('white', 'black');
-  const menu = useColorModeValue('WhiteAlpha.100', 'BlackAlpha.200');
-  const focus = useColorModeValue('#edf2f7', '#171923');
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
-  const handleLogout = () => {
-    fetch('https://artikapp.herokuapp.com/api/v1/auth/logout', {
-      method: 'POST',
-      body: JSON.stringify({
-        refreshToken: user?.jwt,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.text())
-      .then(res => {
-        toast({
-          title: 'Successful',
-          description: 'You have logged out of Artik',
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        });
-        localStorage.removeItem('artikLoggedUser');
-        setUser({});
-        navigate('/');
-      })
-      .catch(err => {
-        toast({
-          title: 'Opps!',
-          description: err,
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        });
-      });
-  };
+
+
+
+const Header = ({user, setUser}) => {
+	const toast = useToast()
+	const navigate = useNavigate();
+	const background = useColorModeValue('white', 'black');
+	const menu = useColorModeValue('WhiteAlpha.100', 'BlackAlpha.200');
+	const focus = useColorModeValue('#edf2f7', '#171923');
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const btnRef = useRef();
+	const handleLogout = () => {
+		const body = {
+			refreshToken: user?.jwtToken
+		}
+		fetch("https://artikapp.herokuapp.com/api/v1/auth/logout" ,{
+			method:'POST',
+			body:JSON.stringify(body),
+			headers:{
+				'Content-Type':'application/json'
+			}
+		})
+		.then(response => response.text())
+		.then(res => {
+			toast({
+				title:"Successful",
+				description:"You have logged out of Artik",
+				status:"success",
+				duration:2000,
+				isClosable:true
+			})
+			localStorage.removeItem("artikLoggedUser")
+			setUser({})
+			navigate("/")
+		})
+		.catch(err => {
+			toast({
+				title:"Opps!",
+				description: err,
+				status:"error",
+				duration:3000,
+				isClosable:true
+			})
+		})
+	}
 
   return (
     <Flex

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DashHeader from './DashHeader';
 import DashNav from './DashNav';
 import axios from 'axios';
+import moment from 'moment';
 
 const DashOverview = ({ user, setUser }) => {
   // console.log(user);
@@ -76,8 +77,10 @@ const DashOverview = ({ user, setUser }) => {
             {data?.map(props => (
               <SecondCard>
                 {/* <SecondImage src={} /> */}
-                <ClientName>{props.details}</ClientName>
-                <ProjectName>{props.deadline}</ProjectName>
+                <ClientName>{props?.jobDetails}</ClientName>
+                <ProjectName>
+                  Deadline:{moment(props?.deadline).fromNow()}
+                </ProjectName>
                 <Amount>${props.cost}</Amount>
               </SecondCard>
             ))}
