@@ -13,6 +13,7 @@ import DashService from './userdash/DashService';
 import DashEditProfile from './userdash/DashEditProfile';
 import DashBlogPage from './userdash/DashBlogPage';
 import Artisans from './pages/Artisans';
+import DashSearchHandy from './userdash/DashSearchHandy';
 
 function App() {
   const background = useColorModeValue('bg', 'BlackAlpha 700');
@@ -36,7 +37,8 @@ function App() {
               element={<DashEditProfile />}
             />
             <Route exact path="/dash/blog" element={<DashBlogPage />} />
-            <Route exact path="/artisans" element={<Artisans />}></Route>
+            <Route exact path="/dash/allskill" element={<DashSearchHandy />} />
+            <Route exact path="/artisans" element={<Artisans />} />
           </Routes>
         </Grid>
       </Box>

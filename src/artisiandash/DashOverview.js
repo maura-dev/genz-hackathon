@@ -21,7 +21,7 @@ const DashOverview = () => {
                     <span>Joined:</span>3days ago
                   </Join>
                 </TextContents>
-                <IconShow>25%</IconShow>
+                <IconShow></IconShow>
               </CardWrapper>
             </Card>
             <Card>
@@ -140,8 +140,6 @@ const IconShow = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  font-weight: 600;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;

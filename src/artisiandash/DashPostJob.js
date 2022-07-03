@@ -2,28 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import DashHeader from './DashHeader';
 import DashNav from './DashNav';
-import axios from 'axios';
+// import * as yup from 'yup';
+// import { useForm } from 'react-hook-form';
+// import { yupResolver } from '@hookform/resolvers/yup';
 
 const DashPostJob = () => {
+  // const schema = yup.object().shape({});
+
   const [location, setLocation] = React.useState('');
-  const [cost, setCost] = React.useState();
+  const [cost, setCost] = React.useState(0);
   const [deadline, setDeadline] = React.useState('');
   const [detail, setDetail] = React.useState('');
 
   const onSubmitform = async () => {
     console.log(location, cost, deadline, detail);
+
     setDetail('');
     setLocation('');
     setDeadline('');
     setDetail('');
-
-    const config = {
-      authorization: `Bearer ${''}`,
-    };
-
-    const url = 'http://artikapp.herokuapp.com/';
-    const res = await axios.post(`${url}/api/v1/auth/post-job`, config);
-    console.log(res);
   };
 
   return (
@@ -41,7 +38,6 @@ const DashPostJob = () => {
                 onChange={e => {
                   setLocation(e.target.value);
                 }}
-                required
               />
             </InputHolder>
             <InputHolder>
@@ -53,7 +49,6 @@ const DashPostJob = () => {
                 onChange={e => {
                   setCost(e.target.value);
                 }}
-                required
               />
             </InputHolder>
             <InputHolder>
@@ -64,7 +59,6 @@ const DashPostJob = () => {
                 onChange={e => {
                   setDeadline(e.target.value);
                 }}
-                required
               />
             </InputHolder>
             <InputHolder1>
@@ -75,13 +69,11 @@ const DashPostJob = () => {
                 onChange={e => {
                   setDetail(e.target.value);
                 }}
-                required
               />
             </InputHolder1>
             <ButtonHolder>
               <Button
-                onClick={e => {
-                  e.preventDefault();
+                onClick={() => {
                   onSubmitform();
                 }}
               >
@@ -98,10 +90,8 @@ const DashPostJob = () => {
 
 export default DashPostJob;
 
-const Button = styled.button`
+const Button = styled.div`
   margin: 0 5px;
-  border: none;
-  outline: none;
   width: 170px;
   height: 50px;
   background: #3ddabe;
@@ -189,7 +179,7 @@ const InputHolder = styled.div`
   width: 100%;
   margin: 10px 0;
 `;
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   width: 450px;
   flex-direction: column;
