@@ -16,6 +16,7 @@ import DashSearchHandy from './userdash/DashSearchHandy';
 import BeforeHiring from './userdash/BeforeHiring';
 import ArtisianOverview from './artisiandash/DashOverview';
 import DashArtBooked from './artisiandash/DashArtBooked';
+import Jobs from './pages/Jobs';
 
 function App() {
   const background = useColorModeValue('bg', 'BlackAlpha 700');
@@ -92,6 +93,11 @@ function App() {
               path="/all-booked"
               element={<DashArtBooked user={user} setUser={setUser} />}
             />
+            <Route
+              exacts
+              path='/jobs'
+              element={<Jobs />}
+              />
           </Routes>
         </Grid>
       </Box>
