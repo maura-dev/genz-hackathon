@@ -16,7 +16,10 @@ import DashSearchHandy from './userdash/DashSearchHandy';
 import BeforeHiring from './userdash/BeforeHiring';
 import ArtisianOverview from './artisiandash/DashOverview';
 import DashArtBooked from './artisiandash/DashArtBooked';
+
 import ArtisianEditProfile from './artisiandash/DashEditProfile';
+
+import Jobs from './pages/Jobs';
 
 function App() {
   const background = useColorModeValue('bg', 'BlackAlpha 700');
@@ -99,6 +102,7 @@ function App() {
               path="/dash/art/editprofile"
               element={<ArtisianEditProfile user={user} setUser={setUser} />}
             />
+            <Route exacts path="/jobs" element={<Jobs />} />
           </Routes>
         </Grid>
       </Box>

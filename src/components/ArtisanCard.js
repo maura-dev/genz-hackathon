@@ -6,7 +6,7 @@ import { GrUserWorker } from 'react-icons/gr';
 import { GoLocation } from 'react-icons/go';
 import { AiFillStar } from 'react-icons/ai';
 
-const ArtisanCard = ({ src, ...props }) => {
+const ArtisanCard = ({ src, name, experience,skills, location, ...props }) => {
 	const alt = useColorModeValue('white', 'black');
 	return (
 		<Flex
@@ -32,16 +32,16 @@ const ArtisanCard = ({ src, ...props }) => {
 			/>
 			<Box p={5}>
 				<Text display="flex" alignItems="center" mb={3}>
-					<GrUserWorker fontSize="25px" /> &nbsp;Ciroma Chukwuma
+					<GrUserWorker fontSize="25px" /> &nbsp;{name}
 				</Text>
 				<Text display="flex" alignItems="center" mb={3}>
-					<MdWork fontSize="25px" /> &nbsp; 24 jobs completed
+					<MdWork fontSize="25px" /> &nbsp; {experience || "Not Available"}
 				</Text>
 				<Text display="flex" alignItems="center" mb={3}>
-					<BiNetworkChart fontSize="25px" /> &nbsp;Plumbing, electronics repair
+					<BiNetworkChart fontSize="25px" /> &nbsp;{skills || "Not Available"}
 				</Text>
 				<Text display="flex" alignItems="center" mb={3}>
-					<GoLocation fontSize="25px" /> &nbsp;Lagos, Nigeria
+					<GoLocation fontSize="25px" /> &nbsp;{location}
 				</Text>
 				<Flex>
 					<AiFillStar color="yellow" fontSize="25px" />
@@ -52,7 +52,7 @@ const ArtisanCard = ({ src, ...props }) => {
 				</Flex>
 			</Box>
 
-			<Button mb={3} border="1px solid" mx={5} alignSelf={{base:"none", md:"end"}} borderColor="primary" bg="transparent" color="primary" justifyItem="baseline">
+			<Button mb={3} border="1px solid" mx={5} alignSelf={{base:"none", md:"end"}} borderColor="primary" bg="transparent" color="primary">
 				{' '}
 				Hire
 			</Button>

@@ -73,10 +73,10 @@ const SignIn = ({ setUser }) => {
               body: JSON.stringify(values),
               headers: { 'Content-Type': 'application/json' },
             })
-              .then(response => response.text())
+              .then(response => response.json())
               .then(res => {
-                console.log(res);
-                localStorage.setItem('artikLoggedUser', res);
+                // console.log(res)
+                localStorage.setItem('artikLoggedUser', JSON.stringify(res));
                 setUser(res);
                 toast({
                   title: 'Successful',
@@ -87,7 +87,9 @@ const SignIn = ({ setUser }) => {
                 });
                 setSubmitting(false);
                 resetForm();
-                navigate('/dash/overview');
+                res.user.isArtisan
+                  ? navigate('/art/overview')
+                  : navigate('/dash/overview');
                 window.location.reload();
               })
               .catch(err => {
