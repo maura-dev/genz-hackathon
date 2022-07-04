@@ -34,18 +34,19 @@ const DashSearchHandy = ({ user }) => {
   // });
   React.useEffect(() => {
     const fetchData = async () => {
+      const data = {
+        skill: mainSkill
+      }
       const config = {
+        method:'GET',
+        url:'https://artikapp.herokuapp.com/api/v1/artisan/find/skill',
+        data: JSON.stringify(data),
         headers: {
-          authorization: `Bearer ${user?.jwtToken}`,
+          Authorization: `Bearer ${user?.jwtToken}`,
         },
       };
-      // const url = 'https://artikapp.herokuapp.com';
-      const res = await axios.get(
-        `https://artikapp.herokuapp.com/api/v1/artisan/find/skill`,
-        { skill: mainSkill },
-        config
-      );
-      console.log('hello', res);
+      const res = await axios(config)
+      // console.log('hello', res);
       setArtisans(res.data);
     };
     fetchData();

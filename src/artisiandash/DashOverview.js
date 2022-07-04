@@ -199,7 +199,7 @@ const DashWrapper = styled.div`
   width: 92%;
 `;
 const DashComp = styled.div`
-  width: calc(100vw - 40px);
+  width: calc(100vw - 350px);
   height: calc(100vh - 80px);
   display: flex;
   align-items: center;
@@ -213,5 +213,5 @@ const Container = styled.div`
 
   min-height: 100vh;
   justify-content: space-between;
-  height: 100%auto;
+  height: 100%;
 `;
