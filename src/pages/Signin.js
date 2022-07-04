@@ -95,6 +95,8 @@ const SignIn = ({ setUser }) => {
                     });
                    
                } else{
+                  setSubmitting(false);
+                    resetForm();
                   toast({
                   title: 'Opps!',
                   description: "Invalid username or password",
