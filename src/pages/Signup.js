@@ -143,7 +143,7 @@ const SignUp = () => {
 							.catch(err => {
 								toast({
 									title:"Opps!",
-									description: err,
+									description: err.message,
 									status:"error",
 									duration:3000,
 									isClosable:true
@@ -158,7 +158,7 @@ const SignUp = () => {
 									'Content-Type':'application/json'
 								}
 							})
-							.then(res => res.text())
+							.then(res => res.json())
 							.then(res => {
 								toast({
 									title:"Successful",
@@ -174,7 +174,7 @@ const SignUp = () => {
 							.catch(err => {
 								toast({
 									title:"Opps!",
-									description: err,
+									description: err.message,
 									status:"error",
 									duration:3000,
 									isClosable:true
