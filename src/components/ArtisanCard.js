@@ -38,6 +38,7 @@ const ArtisanCard = ({
       navigate(`/login`);
     }
   };
+
   return (
     <Flex
       w="100%"

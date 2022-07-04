@@ -11,6 +11,7 @@ import { BsSearch } from 'react-icons/bs';
 
 const Artisans = ({ user }) => {
   const [artisans, setArtisans] = useState([]);
+
   useEffect(() => {
     fetch('https://artikapp.herokuapp.com/api/v1/artisan/all-artisan', {
       method: 'GET',

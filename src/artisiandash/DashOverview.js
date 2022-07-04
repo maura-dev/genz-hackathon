@@ -12,6 +12,23 @@ import clientimg from '../images/client.png';
 const ArtisianOverview = ({ user }) => {
   const [data, setData] = useState([]);
 
+  const updateBooking = async id => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user?.jwtToken}`,
+      },
+    };
+    const res = await axios.put(
+      `https://artikapp.herokuapp.com/api/v1/booking/artisan/booking/accept-or-deny`,
+      {
+        bookingId: id,
+        status: 'accepted',
+      },
+      config
+    );
+    console.log(res);
+  };
+
   const fetchData = async () => {
     const config = {
       headers: {
@@ -97,7 +114,13 @@ const ArtisianOverview = ({ user }) => {
                   </HiredDate>
                   <Amount>${props?.budgetCost}</Amount>
                   {props?.isAccepted ? null : (
-                    <PendingButton>Approve</PendingButton>
+                    <PendingButton
+                      onClick={() => {
+                        updateBooking(props?._id);
+                      }}
+                    >
+                      Approve
+                    </PendingButton>
                   )}
                 </SecondCard>
               ) : null
