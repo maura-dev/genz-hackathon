@@ -61,7 +61,7 @@ const DashPostJob = ({ user }) => {
             timer: 2500,
             showConfirmButton: true,
           }).then(() => {
-            navigate(`/dash/overview`);
+            navigate(`/dash/alljobs`);
           });
         }
       } catch (error) {

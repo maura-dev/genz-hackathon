@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 const DashEditProfile = ({ user }) => {
-  console.log(user?.jwtToken);
+  // console.log(user?.jwtToken);
 
   const [FirstName, setFirstName] = React.useState(user?.user?.firstName || '');
   const [LastName, setLastName] = React.useState(user?.user?.lastName || '');
