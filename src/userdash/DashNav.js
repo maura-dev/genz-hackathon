@@ -9,6 +9,7 @@ import {
 // import {MdLogout} from "react-icons/md"
 import img from './gift.png';
 import { NavLink } from 'react-router-dom';
+import { BsFillBriefcaseFill } from 'react-icons/bs';
 
 const DashNav = () => {
   return (
@@ -51,12 +52,12 @@ const DashNav = () => {
             </IconAndText>
             <Line to={`/dash/blog`}></Line>
           </NavAndIcon>
-          <NavAndIcon to={`/`}>
+          <NavAndIcon to={`/dash/alljobs`}>
             <IconAndText>
-              {/* <MdLogout /> */}
-              <Text>Logout</Text>
+              <BsFillBriefcaseFill />
+              <Text>View All Jobs</Text>
             </IconAndText>
-            <Line to={`/`}></Line>
+            <Line to={`/dash/alljobs`}></Line>
           </NavAndIcon>
         </NavHolder>
         <Image src={img} />

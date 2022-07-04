@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { BiNetworkChart, BiSearch } from 'react-icons/bi';
@@ -10,23 +11,44 @@ import img from '../images/man.jpg';
 import DashNav from './DashNav';
 
 const DashSearchHandy = ({ user }) => {
+  //skill is coming from the all service page
   const { skill } = useParams();
   // console.log(user?.jwtToken);
+  const mainSkill = skill.toLowerCase();
   const [search, setSearch] = React.useState('');
+  // const [searchData, setSearchData] = React.useState('');
 
   const navigate = useNavigate();
 
   //   const [locationData, setLocationData] = React.useState([]);
 
   const [artisans, setArtisans] = React.useState([]);
+  // React.useEffect(() => {
+  //   fetch('https://artikapp.herokuapp.com/api/v1/artisan/all-artisan', {
+  //     method: 'GET',
+  //     headers: { 'Content-Type': 'application/json' },
+  //   })
+  //     .then(response => response.json())
+  //     .then(res => setArtisans(res))
+  //     .catch(err => console.log(err));
+  // });
   React.useEffect(() => {
-    fetch('https://artikapp.herokuapp.com/api/v1/artisan/all-artisan', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(response => response.json())
-      .then(res => setArtisans(res))
-      .catch(err => console.log(err));
+    const fetchData = async () => {
+      const config = {
+        headers: {
+          authorization: `Bearer ${user?.jwtToken}`,
+        },
+      };
+      // const url = 'https://artikapp.herokuapp.com';
+      const res = await axios.get(
+        `https://artikapp.herokuapp.com/api/v1/artisan/find/skill`,
+        { skill: mainSkill },
+        config
+      );
+      console.log('hello', res);
+      setArtisans(res.data);
+    };
+    fetchData();
   });
 
   //   const searchFunction = async () => {};

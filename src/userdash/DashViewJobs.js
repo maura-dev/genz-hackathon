@@ -9,62 +9,70 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Avatar } from '@chakra-ui/avatar';
 import moment from 'moment';
+import { AiFillDelete } from 'react-icons/ai';
 // import axios from 'axios';
 
-const DashBlogPage = ({ user }) => {
+const DashViewJobs = ({ user }) => {
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
+  const deleteJob = async id => {
     const config = {
       headers: {
         authorization: `Bearer ${user?.jwtToken}`,
       },
     };
-    const res = await axios.get(
-      `https://artikapp.herokuapp.com/api/v1/booking/user/get-bookings
-      `,
-      config
-    );
-    // console.log(res);
-    setData(res.data);
+    const url = 'https://artikapp.herokuapp.com';
+    const res = await axios.delete(`${url}/api/v1/job/deleteJob/${id}`, config);
+    if (res) {
+      window.location.reload();
+    }
   };
+
   useEffect(() => {
+    const fetchData = async () => {
+      const config = {
+        headers: {
+          authorization: `Bearer ${user?.jwtToken}`,
+        },
+      };
+      const res = await axios.get(
+        `https://artikapp.herokuapp.com/api/v1/job/all-job`,
+        config
+      );
+      setData(res.data);
+    };
     fetchData();
     console.log(data);
-  });
+  }, [data, user]);
+
   return (
     <Container>
       <DashNav />
       <DashComp>
         <DashHeader />
         <DashWrapper>
-          <Title>All booked Page</Title>
+          <Title>All My Jobs</Title>
           <HoldAllBook>
             {data?.map(props => (
               <SecondCard>
                 <Avatar
                   size="md"
-                  name={`${props?.artisan?.firstName} ${props?.artisan?.lastName}`}
+                  name={`${user.user.firstName} ${user.user.lastName}`}
                   mr={1}
                   ml={5}
                 />
-                <ClientName>
-                  {props?.artisan?.firstName} {props?.artisan?.lastName}
-                </ClientName>
-                <ProjectName>{props?.detail}</ProjectName>
-                <HiredDate>
-                  Hired: <span>{moment(props?.createdAt).fromNow()}</span>
-                </HiredDate>
-                <Amount>${props?.budgetCost}</Amount>
-                {props?.isAccepted ? (
-                  <PendingButton
-                    style={{ backgroundColor: '#3ddabe', color: 'black' }}
-                  >
-                    Hired
-                  </PendingButton>
-                ) : (
-                  <PendingButton>Pending</PendingButton>
-                )}
+                <ClientName>{props?.jobDetails}</ClientName>
+                <ProjectName>
+                  Deadline:{moment(props?.deadline).fromNow()}
+                </ProjectName>
+                <Amount>${props.cost}</Amount>
+                <DeleteIcon
+                  onClick={() => {
+                    deleteJob(props._id);
+                  }}
+                >
+                  <AiFillDelete fontSize="20px" />
+                </DeleteIcon>
               </SecondCard>
             ))}
           </HoldAllBook>
@@ -74,24 +82,19 @@ const DashBlogPage = ({ user }) => {
   );
 };
 
-export default DashBlogPage;
+export default DashViewJobs;
 
-const PendingButton = styled.div`
-  padding: 10px 15px;
-  border-radius: 30px;
-  background: red;
-  font-size: 12px;
-  color: white;
-`;
-const HiredDate = styled.div`
-  display: flex;
-  margin-right: 70px;
-  font-size: 13px;
-  font-weight: 600;
+const DeleteIcon = styled.div`
+  cursor: pointer;
+  margin-right: 20px;
+  transition: all 450ms;
+  :hover {
+    color: red;
+  }
 `;
 const Amount = styled.div`
   display: flex;
-  margin-right: 80px;
+  margin-right: 30px;
   font-weight: 600;
   color: red;
 `;
@@ -100,15 +103,14 @@ const ProjectName = styled.div`
   margin-left: 10px;
   color: #3ddabe;
   display: flex;
-  margin: 0 80px;
-  /* flex: 2; */
+  flex: 2;
 `;
 const ClientName = styled.div`
   font-weight: 600;
   margin-left: 10px;
-
+  margin-right: 100px;
   display: flex;
-  /* flex: 1; */
+  flex: 1;
 `;
 
 const SecondCard = styled.div`
