@@ -106,13 +106,17 @@ const Header = ({ user, setUser }) => {
           justify="space-around"
           alignItems="center"
         >
-         {user && user.jwtToken ? null : ( <Link to="/register">
-            <Text mr={5}>Register</Text>
-          </Link>)} {' '}
+          {user && user.jwtToken ? null : (
+            <Link to="/register">
+              <Text mr={5}>Register</Text>
+            </Link>
+          )}{' '}
           &nbsp;
-          <Link to="/artisans">
-            <Text mr={5}>Artisans</Text>
-          </Link>{' '}
+          {!user?.user?.isArtisan ? (
+            <Link to="/artisans">
+              <Text mr={5}>Artisans</Text>
+            </Link>
+          ) : null}{' '}
           &nbsp;
           <Link to="/jobs">
             <Text mr={5}>Jobs</Text>
@@ -139,7 +143,15 @@ const Header = ({ user, setUser }) => {
                     _focus={{ bg: focus }}
                     _active={{ bg: { base: '#18183d', md: '#e2e8f0' } }}
                   >
-                    <Link to={user.user?.isArtisan ? '/art/overview' :'/dash/overview'}>Dashboard</Link>
+                    <Link
+                      to={
+                        user.user?.isArtisan
+                          ? '/art/overview'
+                          : '/dash/overview'
+                      }
+                    >
+                      Dashboard
+                    </Link>
                   </MenuItem>
                   <MenuItem
                     bg={menu}

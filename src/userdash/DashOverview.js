@@ -70,8 +70,6 @@ const DashOverview = ({ user, setUser }) => {
                   </Join>
                 </TextContents>
                 <IconShow src={usericon} />
-                {/* <Icon /> */}
-                {/* </IconShow> */}
               </CardWrapper>
             </Card>
             <Card>

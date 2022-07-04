@@ -2,17 +2,32 @@ import React from 'react'; // useState
 
 import DashHeader from './DashHeader';
 import styled from 'styled-components';
-import img from '../images/man.jpg';
 import ArtisianNav from './DashNav';
+import axios from 'axios';
+import { Avatar } from '@chakra-ui/avatar';
+import moment from 'moment';
 // import axios from 'axios';
 
-const DashArtBooked = () => {
-  // const [data,setData] = useState([])
+const DashArtBooked = ({ user }) => {
+  const [data, setData] = React.useState([]);
 
-  // const fetchData = async () => {
-  //   const url = "https://artikapp.herokuapp.com"
-  //   const res = await axios.get(`${url}/`)
-  // }
+  const fetchData = async () => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user?.jwtToken}`,
+      },
+    };
+    const res = await axios.get(
+      `https://artikapp.herokuapp.com/api/v1/booking/artisan/get-bookings`,
+      config
+    );
+    // console.log(res);
+    setData(res?.data);
+  };
+  React.useEffect(() => {
+    fetchData();
+    console.log(data);
+  });
 
   return (
     <Container>
@@ -22,12 +37,28 @@ const DashArtBooked = () => {
         <DashWrapper>
           <Title>All booked Page</Title>
           <HoldAllBook>
-            <SecondCard>
-              <SecondImage src={img} />
-              <ClientName>Confidence Efem</ClientName>
-              <ProjectName>Fixing Electric Fan</ProjectName>
-              <Amount>$5000</Amount>
-            </SecondCard>
+            {data?.map(props => (
+              <SecondCard>
+                <Avatar
+                  size="md"
+                  name={`${props?.client?.firstName} ${props?.client?.lastName}`}
+                  mr={1}
+                  ml={5}
+                />
+                <ClientName>{props?.clientName}</ClientName>
+                <ProjectName>{props?.detail}</ProjectName>
+                <HiredDate>
+                  Hired: <span>{moment(props?.createdAt).fromNow()}</span>
+                </HiredDate>
+                <HiredDate>
+                  Address: <span>{props.clientAddress}</span>
+                </HiredDate>
+                <Amount>${props?.budgetCost}</Amount>
+                {props?.isAccepted ? null : (
+                  <PendingButton>Approve</PendingButton>
+                )}
+              </SecondCard>
+            ))}
           </HoldAllBook>
         </DashWrapper>
       </DashComp>
@@ -37,31 +68,45 @@ const DashArtBooked = () => {
 
 export default DashArtBooked;
 
-const Amount = styled.div`
+const PendingButton = styled.div`
+  padding: 10px 15px;
+  border-radius: 30px;
+  background: red;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 350ms;
+  :hover {
+    transform: scale(1.02);
+  }
+`;
+const HiredDate = styled.div`
   display: flex;
   margin-right: 30px;
+  font-size: 13px;
+  font-weight: 600;
+`;
+const Amount = styled.div`
+  display: flex;
+  margin-right: 20px;
   font-weight: 600;
   color: red;
 `;
 const ProjectName = styled.div`
   font-weight: 600;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   color: #3ddabe;
   display: flex;
-  flex: 2;
+  font-size: 14px;
+  margin: 0 40px;
+  /* flex: 2; */
 `;
 const ClientName = styled.div`
   font-weight: 600;
   margin-left: 10px;
-  margin-right: 100px;
+  font-size: 14px;
   display: flex;
-  flex: 1;
-`;
-const SecondImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 0 15px;
+  /* flex: 1; */
 `;
 
 const SecondCard = styled.div`
@@ -78,6 +123,8 @@ const SecondCard = styled.div`
 const HoldAllBook = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const Title = styled.div`
   font-size: 18px;
