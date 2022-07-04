@@ -20,7 +20,7 @@ const DashBlogPage = ({ user }) => {
       },
     };
     const res = await axios.get(
-      `http://artikapp.herokuapp.com/api/v1/job/all-job`,
+      `https://artikapp.herokuapp.com/api/v1/job/all-job`,
       config
     );
     // console.log(res);
@@ -29,7 +29,7 @@ const DashBlogPage = ({ user }) => {
   useEffect(() => {
     fetchData();
     console.log(data);
-  }, [data]);
+  });
   return (
     <Container>
       <DashNav />

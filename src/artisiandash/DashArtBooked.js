@@ -1,5 +1,4 @@
-import React from // useState
-'react';
+import React from 'react'; // useState
 
 import DashHeader from './DashHeader';
 import styled from 'styled-components';
@@ -11,7 +10,7 @@ const DashArtBooked = () => {
   // const [data,setData] = useState([])
 
   // const fetchData = async () => {
-  //   const url = "http://artikapp.herokuapp.com"
+  //   const url = "https://artikapp.herokuapp.com"
   //   const res = await axios.get(`${url}/`)
   // }
 

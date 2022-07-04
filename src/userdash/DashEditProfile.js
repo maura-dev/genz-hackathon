@@ -18,7 +18,7 @@ const DashEditProfile = ({ user }) => {
     console.log(FirstName, LastName, City, State, Phone);
 
     try {
-      const url = 'http://artikapp.herokuapp.com';
+      const url = 'https://artikapp.herokuapp.com';
       const config = {
         headers: {
           authorization: `Bearer ${user?.jwtToken}`,

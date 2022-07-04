@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { BiNetworkChart, BiSearch } from 'react-icons/bi';
@@ -12,40 +11,34 @@ import DashNav from './DashNav';
 
 const DashSearchHandy = ({ user }) => {
   const { skill } = useParams();
+  // console.log(user?.jwtToken);
   const [search, setSearch] = React.useState('');
 
   const navigate = useNavigate();
 
-  const [allData, setAllData] = React.useState([]);
-
   //   const [locationData, setLocationData] = React.useState([]);
 
-  const fetchData = async () => {
-    const config = {
-      authorization: `Bearer ${user?.jwtToken}`,
-    };
-    const url = 'http://artikapp.herokuapp.com';
-    const res = await axios.get(
-      `${url}/api/v1/artisan/find/skill`,
-      {
-        skill: skill,
-      },
-      config
-    );
-    console.log(res);
-    setAllData(res?.data);
-  };
+  const [artisans, setArtisans] = React.useState([]);
+  React.useEffect(() => {
+    fetch('https://artikapp.herokuapp.com/api/v1/artisan/all-artisan', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then(res => setArtisans(res))
+      .catch(err => console.log(err));
+  });
 
   //   const searchFunction = async () => {};
 
-  const onToggle = id => {
-    navigate(`/beforehire/${'i'}`);
-  };
+  // const onToggle = id => {
+  //   navigate(`/beforehire/${'i'}`);
+  // };
 
-  React.useEffect(() => {
-    fetchData();
-    // console.log(allData);
-  });
+  // React.useEffect(() => {
+  //   fetchData();
+  //   console.log(allData);
+  // });
 
   return (
     <Container>
@@ -70,47 +63,51 @@ const DashSearchHandy = ({ user }) => {
         </Container1>
         <DashWrapper>
           <FirstCardHolder>
-            {allData?.map((props, i) => (
-              <Card>
-                <Image src={img} />
-                <ClientDetails>
-                  <IconAndText>
-                    <GrUserWorker fontSize="18px" backgroundColor="blue" />
-                    <Text>
-                      <b>Confidence Efem</b>
-                    </Text>
-                  </IconAndText>
-                  <IconAndText>
-                    <MdWork fontSize="18px" />
-                    <Text>10 Jobs completed</Text>
-                  </IconAndText>
-                  <IconAndText>
-                    <BiNetworkChart fontSize="18px" />
-                    <Text>Electrical Engineerer</Text>
-                  </IconAndText>
-                  <IconAndText>
-                    <GoLocation fontSize="18px" />
-                    <Text>10 Jobs completed</Text>
-                  </IconAndText>
-                  <RatingAndButton>
-                    <RatingHolder>
-                      <AiFillStar color="#3ddabe" fontSize="20px" />
-                      <AiFillStar color="#3ddabe" fontSize="20px" />
-                      <AiFillStar color="#3ddabe" fontSize="20px" />
-                      <AiFillStar color="#3ddabe" fontSize="20px" />
-                    </RatingHolder>
-                    <HireButton
-                      onClick={() => {
-                        onToggle('i');
-                        navigate(`/beforehire/${'id'}/${skill}`);
-                      }}
-                    >
-                      Hire Me
-                    </HireButton>
-                  </RatingAndButton>
-                </ClientDetails>
-              </Card>
-            ))}
+            {artisans?.map((props, i) =>
+              i < 3 ? (
+                <Card>
+                  <Image src={img} />
+                  <ClientDetails>
+                    <IconAndText>
+                      <GrUserWorker fontSize="18px" backgroundColor="blue" />
+                      <Text>
+                        <b>
+                          {props?.firstName} {props?.lastName}
+                        </b>
+                      </Text>
+                    </IconAndText>
+                    <IconAndText>
+                      <MdWork fontSize="18px" />
+                      <Text>10 Jobs completed</Text>
+                    </IconAndText>
+                    <IconAndText>
+                      <BiNetworkChart fontSize="18px" />
+                      <Text>{props?.skill}</Text>
+                    </IconAndText>
+                    <IconAndText>
+                      <GoLocation fontSize="18px" />
+                      <Text>10 Jobs completed</Text>
+                    </IconAndText>
+                    <RatingAndButton>
+                      <RatingHolder>
+                        <AiFillStar color="#3ddabe" fontSize="20px" />
+                        <AiFillStar color="#3ddabe" fontSize="20px" />
+                        <AiFillStar color="#3ddabe" fontSize="20px" />
+                        <AiFillStar color="#3ddabe" fontSize="20px" />
+                      </RatingHolder>
+                      <HireButton
+                        onClick={() => {
+                          // onToggle('i');
+                          navigate(`/beforehire/${props?._id}/${skill}`);
+                        }}
+                      >
+                        Hire Me
+                      </HireButton>
+                    </RatingAndButton>
+                  </ClientDetails>
+                </Card>
+              ) : null
+            )}
           </FirstCardHolder>
         </DashWrapper>
       </DashComp>
