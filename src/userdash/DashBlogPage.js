@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useState, // useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DashNav from './DashNav';
 import DashHeader from './DashHeader';
@@ -9,7 +6,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Avatar } from '@chakra-ui/avatar';
 import moment from 'moment';
-// import axios from 'axios';
 
 const DashBlogPage = ({ user }) => {
   const [data, setData] = useState([]);
@@ -25,7 +21,6 @@ const DashBlogPage = ({ user }) => {
       `,
       config
     );
-    // console.log(res);
     setData(res.data);
   };
   useEffect(() => {
@@ -99,6 +94,7 @@ const ProjectName = styled.div`
   font-weight: 600;
   margin-left: 10px;
   color: #3ddabe;
+  width: 170px;
   display: flex;
   margin: 0 80px;
   /* flex: 2; */
@@ -112,14 +108,15 @@ const ClientName = styled.div`
 `;
 
 const SecondCard = styled.div`
-  width: 87%;
+  width: 85%;
   margin: 15px 0;
   display: flex;
   align-items: center;
   background: white;
   /* margin-left: 20px; */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  height: 80px;
+  min-height: 80px;
+  height: 100%auto;
 `;
 
 const HoldAllBook = styled.div`

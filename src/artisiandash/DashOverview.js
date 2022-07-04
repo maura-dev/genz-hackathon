@@ -113,7 +113,17 @@ const ArtisianOverview = ({ user }) => {
                     Address: <span>{props.clientAddress}</span>
                   </HiredDate>
                   <Amount>${props?.budgetCost}</Amount>
-                  {props?.isAccepted ? null : (
+                  {props?.isAccepted ? (
+                    <PendingButton
+                      style={{
+                        backgroundColor: 'white',
+                        fontWeight: '600',
+                        color: 'black',
+                      }}
+                    >
+                      Approved
+                    </PendingButton>
+                  ) : (
                     <PendingButton
                       onClick={() => {
                         updateBooking(props?._id);
@@ -157,7 +167,7 @@ const PendingButton = styled.div`
 `;
 const HiredDate = styled.div`
   display: flex;
-  margin-right: 30px;
+  margin-right: 20px;
   font-size: 13px;
   font-weight: 600;
 `;
@@ -185,7 +195,7 @@ const ClientName = styled.div`
 `;
 
 const SecondCard = styled.div`
-  width: 87%;
+  width: 90%;
   margin: 15px 0;
   display: flex;
   align-items: center;
@@ -262,7 +272,7 @@ const DashWrapper = styled.div`
   width: 92%;
 `;
 const DashComp = styled.div`
-  width: calc(100vw - 40px);
+  width: calc(100vw - 350px);
   height: calc(100vh - 80px);
   display: flex;
   align-items: center;
@@ -276,5 +286,5 @@ const Container = styled.div`
 
   min-height: 100vh;
   justify-content: space-between;
-  height: 100%auto;
+  height: 100%;
 `;

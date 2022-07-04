@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { BiNetworkChart, BiSearch } from 'react-icons/bi';
@@ -13,54 +12,22 @@ import DashNav from './DashNav';
 const DashSearchHandy = ({ user }) => {
   //skill is coming from the all service page
   const { skill } = useParams();
-  // console.log(user?.jwtToken);
-  const mainSkill = skill.toLowerCase();
+
   const [search, setSearch] = React.useState('');
-  // const [searchData, setSearchData] = React.useState('');
 
   const navigate = useNavigate();
 
-  //   const [locationData, setLocationData] = React.useState([]);
-
   const [artisans, setArtisans] = React.useState([]);
-  // React.useEffect(() => {
-  //   fetch('https://artikapp.herokuapp.com/api/v1/artisan/all-artisan', {
-  //     method: 'GET',
-  //     headers: { 'Content-Type': 'application/json' },
-  //   })
-  //     .then(response => response.json())
-  //     .then(res => setArtisans(res))
-  //     .catch(err => console.log(err));
-  // });
+
   React.useEffect(() => {
-    const fetchData = async () => {
-      const config = {
-        headers: {
-          authorization: `Bearer ${user?.jwtToken}`,
-        },
-      };
-      // const url = 'https://artikapp.herokuapp.com';
-      const res = await axios.get(
-        `https://artikapp.herokuapp.com/api/v1/artisan/find/skill`,
-        { skill: mainSkill },
-        config
-      );
-      console.log('hello', res);
-      setArtisans(res.data);
-    };
-    fetchData();
+    fetch('https://artikapp.herokuapp.com/api/v1/artisan/all-artisan', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then(res => setArtisans(res))
+      .catch(err => console.log(err));
   });
-
-  //   const searchFunction = async () => {};
-
-  // const onToggle = id => {
-  //   navigate(`/beforehire/${'i'}`);
-  // };
-
-  // React.useEffect(() => {
-  //   fetchData();
-  //   console.log(allData);
-  // });
 
   return (
     <Container>
@@ -108,7 +75,11 @@ const DashSearchHandy = ({ user }) => {
                     </IconAndText>
                     <IconAndText>
                       <GoLocation fontSize="18px" />
-                      <Text>10 Jobs completed</Text>
+                      <Text>
+                        {props?.workshopAddress === ''
+                          ? props.state
+                          : props.workshopAddress}
+                      </Text>
                     </IconAndText>
                     <RatingAndButton>
                       <RatingHolder>
@@ -182,6 +153,7 @@ const Container1 = styled.div`
   display: flex;
   justify-content: center;
   height: 100px;
+  /* margin-top: 10px; */
   align-items: center;
 `;
 

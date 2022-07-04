@@ -4,34 +4,15 @@ import DashHeader from './DashHeader';
 import DashNav from './DashNav';
 import axios from 'axios';
 import moment from 'moment';
-import { Avatar } from '@chakra-ui/react';
-import usericon from '../images/user.png';
-import jobicon from '../images/suitcase.png';
-import hiredicon from '../images/hired.png';
+import img from '../images/user.png';
+import img1 from '../images/hired.png';
+import img2 from '../images/suitcase.png';
+import { Avatar } from '@chakra-ui/avatar';
 
 const DashOverview = ({ user, setUser }) => {
   // console.log(user);
 
   const [data, setData] = useState([]);
-  const [hireData, setHireData] = useState([]);
-
-  useEffect(() => {
-    const fetchHireData = async () => {
-      const config = {
-        headers: {
-          authorization: `Bearer ${user?.jwtToken}`,
-        },
-      };
-      const res = await axios.get(
-        `https://artikapp.herokuapp.com/api/v1/booking/user/get-bookings
-      `,
-        config
-      );
-      // console.log(res);
-      setHireData(res.data);
-    };
-    fetchHireData();
-  }, [hireData, user]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,12 +25,9 @@ const DashOverview = ({ user, setUser }) => {
         `https://artikapp.herokuapp.com/api/v1/job/all-job`,
         config
       );
-      // console.log(res);
       setData(res.data);
     };
     fetchData();
-
-    console.log(data);
   }, [data, user]);
 
   return (
@@ -63,13 +41,14 @@ const DashOverview = ({ user, setUser }) => {
               <CardWrapper>
                 <TextContents>
                   <TotalText>Complete Profile</TotalText>
-                  <Amoutn>50%</Amoutn>
+                  <Amoutn>20</Amoutn>
                   <Join>
                     <span>Joined: </span>{' '}
                     {moment(user?.user?.createdAt).fromNow()}
                   </Join>
                 </TextContents>
-                <IconShow src={usericon} />
+
+                <IconShow src={img} />
               </CardWrapper>
             </Card>
             <Card>
@@ -82,26 +61,19 @@ const DashOverview = ({ user, setUser }) => {
                     {moment(data[data?.length - 1]?.createdAt).fromNow()}
                   </Join>
                 </TextContents>
-                <IconShow src={jobicon} />
-                {/* <Icon /> */}
-                {/* </IconShow> */}
+                <IconShow src={img2} />
               </CardWrapper>
             </Card>
             <Card>
               <CardWrapper>
                 <TextContents>
                   <TotalText>Total Hiring</TotalText>
-                  <Amoutn>{hireData?.length}</Amoutn>
+                  <Amoutn>5</Amoutn>
                   <Join>
-                    <span>Recent:</span>
-                    {moment(
-                      hireData[hireData?.length - 1]?.createdAt
-                    ).fromNow()}
+                    <span>Recent:</span>2days ago
                   </Join>
                 </TextContents>
-                <IconShow src={hiredicon} />
-                {/* <Icon /> */}
-                {/* </IconShow> */}
+                <IconShow src={img1} />
               </CardWrapper>
             </Card>
           </FirstCardHolder>
@@ -112,9 +84,9 @@ const DashOverview = ({ user, setUser }) => {
                 <SecondCard>
                   <Avatar
                     size="md"
-                    name={`${user.user.firstName} ${user.user.lastName}`}
+                    name={`${user?.user?.firstName} ${user?.user?.lastName}`}
                     mr={1}
-                    ml={5}
+                    ml={3}
                   />
                   <ClientName>{props?.jobDetails}</ClientName>
                   <ProjectName>
@@ -132,6 +104,18 @@ const DashOverview = ({ user, setUser }) => {
 };
 
 export default DashOverview;
+
+const IconShow = styled.img`
+  width: 60px;
+  height: 60px;
+  /* border-radius: 50%; */
+  font-weight: 600;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: lightgray; */
+`;
 
 const Amount = styled.div`
   display: flex;
@@ -203,17 +187,7 @@ const TotalText = styled.div`
   color: #3ddabe;
   font-weight: 600;
 `;
-const IconShow = styled.img`
-  width: 60px;
-  height: 60px;
-  /* border-radius: 50%; */
-  font-weight: 600;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background: lightgray; */
-`;
+
 const TextContents = styled.div`
   display: flex;
   flex-direction: column;
@@ -246,8 +220,8 @@ const DashWrapper = styled.div`
   width: 92%;
 `;
 const DashComp = styled.div`
-  width: calc(100vw - 40px);
-  height: calc(100vh - 80px);
+  width: calc(100vw - 350px);
+  min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   background-color: #fafcff;
@@ -260,5 +234,5 @@ const Container = styled.div`
 
   min-height: 100vh;
   justify-content: space-between;
-  height: 100%auto;
+  height: 100%;
 `;

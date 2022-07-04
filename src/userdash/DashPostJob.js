@@ -17,8 +17,6 @@ const DashPostJob = ({ user }) => {
   const [detail, setDetail] = React.useState('');
 
   const onSubmitform = async () => {
-    console.log(user.jwtToken);
-    // console.log(location, cost, deadline, detail);
     if (
       location === '' ||
       cost === '' ||
@@ -57,7 +55,6 @@ const DashPostJob = ({ user }) => {
           Swal.fire({
             icon: 'success',
             title: 'Job Created successfully',
-            // text: 'Input your Datas',
             timer: 2500,
             showConfirmButton: true,
           }).then(() => {

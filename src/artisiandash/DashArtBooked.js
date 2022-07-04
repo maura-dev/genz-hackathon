@@ -54,7 +54,17 @@ const DashArtBooked = ({ user }) => {
                   Address: <span>{props.clientAddress}</span>
                 </HiredDate>
                 <Amount>${props?.budgetCost}</Amount>
-                {props?.isAccepted ? null : (
+                {props?.isAccepted ? (
+                  <PendingButton
+                    style={{
+                      backgroundColor: 'white',
+                      fontWeight: '600',
+                      color: 'black',
+                    }}
+                  >
+                    Approved
+                  </PendingButton>
+                ) : (
                   <PendingButton>Approve</PendingButton>
                 )}
               </SecondCard>

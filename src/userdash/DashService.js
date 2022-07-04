@@ -11,10 +11,6 @@ import { BiSearch } from 'react-icons/bi';
 const DashService = () => {
   const navigate = useNavigate();
 
-  // const searchSkillFunction = async () => {
-  //   navigate(`/dash/allskill`);
-  // };
-
   return (
     <Container>
       <DashNav />
@@ -29,7 +25,6 @@ const DashService = () => {
           <CardHolder>
             <Card
               onClick={() => {
-                // searchSkillFunction();
                 navigate(`/dash/allskill/engineerer`);
               }}
             >
@@ -44,7 +39,6 @@ const DashService = () => {
             </Card>
             <Card
               onClick={() => {
-                // searchSkillFunction();
                 navigate(`/dash/allskill/plumber`);
               }}
             >
@@ -57,7 +51,6 @@ const DashService = () => {
             </Card>
             <Card
               onClick={() => {
-                // searchSkillFunction();
                 navigate(`/dash/allskill/carpentar`);
               }}
             >
@@ -72,7 +65,6 @@ const DashService = () => {
             </Card>
             <Card
               onClick={() => {
-                // searchSkillFunction();
                 navigate(`/dash/allskill/mechanic`);
               }}
             >
@@ -86,7 +78,6 @@ const DashService = () => {
 
             <Card
               onClick={() => {
-                // searchSkillFunction();
                 navigate(`/dash/allskill/painter`);
               }}
             >

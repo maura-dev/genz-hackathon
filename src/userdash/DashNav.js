@@ -6,7 +6,6 @@ import {
   AiTwotoneEdit,
   AiTwotoneFile,
 } from 'react-icons/ai';
-// import {MdLogout} from "react-icons/md"
 import img from './gift.png';
 import { NavLink } from 'react-router-dom';
 import { BsFillBriefcaseFill } from 'react-icons/bs';
@@ -130,10 +129,11 @@ const Logo = styled.div`
   /* background: #fafcff; */
 `;
 const Container = styled.div`
-  width: 400px;
+  width: 350px;
   background-color: white;
   display: flex;
-  height: 100%;
+  height: 100vh;
+  padding-top: 50px;
   justify-content: flex-end;
   box-shadow: 1px 1px 1px lightgray;
 `;

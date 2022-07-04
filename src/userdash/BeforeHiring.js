@@ -16,7 +16,6 @@ const BeforeHiring = ({ user }) => {
   const [detail, setDetail] = React.useState('');
 
   const HireFunction = async () => {
-    // console.log(location, cost, address, detail);
     if (location === '' || cost === '' || address === '' || detail === '') {
       Swal.fire({
         icon: 'error',
@@ -42,11 +41,10 @@ const BeforeHiring = ({ user }) => {
           Swal.fire({
             icon: 'success',
             title: 'Artisian booked successfully',
-            // text: 'Input your Datas',
             timer: 2500,
             showConfirmButton: true,
           }).then(() => {
-            navigate(`/dash/overview`);
+            navigate(`/dash/blog`);
           });
         }
         console.log(res);
@@ -60,11 +58,6 @@ const BeforeHiring = ({ user }) => {
         });
       }
     }
-
-    // setDetail('');
-    // setLocation('');
-    // setAddress('');
-    // setCost('');
   };
 
   return (
@@ -77,7 +70,7 @@ const BeforeHiring = ({ user }) => {
             <Cancel>
               <Circle
                 onClick={() => {
-                  navigate(`/allskill/${skill}`);
+                  navigate(`/dash/allskill/${skill}`);
                 }}
               >
                 <AiOutlineClose fontSize="17px" cursor="pointer" to="/" />

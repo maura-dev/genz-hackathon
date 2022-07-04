@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useState, // useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DashNav from './DashNav';
 import DashHeader from './DashHeader';
@@ -10,7 +7,6 @@ import axios from 'axios';
 import { Avatar } from '@chakra-ui/avatar';
 import moment from 'moment';
 import { AiFillDelete } from 'react-icons/ai';
-// import axios from 'axios';
 
 const DashViewJobs = ({ user }) => {
   const [data, setData] = useState([]);
