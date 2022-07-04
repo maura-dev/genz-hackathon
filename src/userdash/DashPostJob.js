@@ -10,6 +10,7 @@ const DashPostJob = ({ user }) => {
   console.log(user);
 
   const navigate = useNavigate();
+  const [title, setTitle] = React.useState('');
   const [location, setLocation] = React.useState('');
   const [cost, setCost] = React.useState();
   const [deadline, setDeadline] = React.useState('');
@@ -18,7 +19,13 @@ const DashPostJob = ({ user }) => {
   const onSubmitform = async () => {
     console.log(user.jwtToken);
     // console.log(location, cost, deadline, detail);
-    if (location === '' || cost === '' || deadline === '' || detail === '') {
+    if (
+      location === '' ||
+      cost === '' ||
+      deadline === '' ||
+      detail === '' ||
+      title === ''
+    ) {
       Swal.fire({
         icon: 'error',
         position: 'center',
@@ -38,6 +45,7 @@ const DashPostJob = ({ user }) => {
         const res = await axios.post(
           `${url}/api/v1/auth/post-job`,
           {
+            title: title,
             jobDetails: detail,
             cost: cost,
             deadline: deadline,
@@ -80,6 +88,17 @@ const DashPostJob = ({ user }) => {
         <DashHeader />
         <DashWrapper>
           <Form>
+            <InputHolder>
+              <Text>Title*:</Text>
+              <Input
+                placeholder="Painter"
+                value={title}
+                onChange={e => {
+                  setTitle(e.target.value);
+                }}
+                required
+              />
+            </InputHolder>
             <InputHolder>
               <Text>Location*:</Text>
               <Input

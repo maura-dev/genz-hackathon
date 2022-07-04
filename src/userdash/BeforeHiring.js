@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
 
 const BeforeHiring = () => {
-  const { id } = useParams();
+  const { id, skill } = useParams();
   const navigate = useNavigate();
   const [location, setLocation] = React.useState('');
   const [cost, setCost] = React.useState();
@@ -46,7 +46,15 @@ const BeforeHiring = () => {
           });
         }
         console.log(res);
-      } catch (error) {}
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to Book Artisian',
+          text: error,
+          timer: 2500,
+          showConfirmButton: true,
+        });
+      }
     }
 
     setDetail('');
@@ -65,7 +73,7 @@ const BeforeHiring = () => {
             <Cancel>
               <Circle
                 onClick={() => {
-                  navigate(`/allskill/engineer`);
+                  navigate(`/allskill/${skill}`);
                 }}
               >
                 <AiOutlineClose fontSize="17px" cursor="pointer" to="/" />

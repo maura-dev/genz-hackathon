@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdDashboard } from 'react-icons/md';
-import {
-  AiTwotoneEdit,
-  AiTwotoneFile,
-} from 'react-icons/ai';
+import { AiTwotoneEdit, AiTwotoneFile } from 'react-icons/ai';
 // import {MdLogout} from "react-icons/md"
 import img from './gift.png';
 import { NavLink } from 'react-router-dom';
@@ -15,34 +12,34 @@ const ArtisianNav = () => {
       <Wrapper>
         <Logo>Artik</Logo>
         <NavHolder>
-          <NavAndIcon to={`/dash/art/overview`}>
+          <NavAndIcon to={`/art/overview`}>
             <IconAndText>
               <MdDashboard />
               <Text>DashBoard</Text>
             </IconAndText>
-            <Line to={`/dash/art/overview`}></Line>
+            <Line to={`/art/overview`}></Line>
           </NavAndIcon>
-          <NavAndIcon to={`/dash/editprofile`}>
+          <NavAndIcon to={`/dash/art/editprofile`}>
             <IconAndText>
               <AiTwotoneEdit />
               <Text>Edit Profile</Text>
             </IconAndText>
-            <Line to={`/dash/editprofile`}></Line>
+            <Line to={`/dash/art/editprofile`}></Line>
           </NavAndIcon>
-          <NavAndIcon to={`/dash/blog`}>
+          <NavAndIcon to={`/dash/art/booked`}>
             <IconAndText>
               <AiTwotoneFile />
               <Text>View Booked Page</Text>
             </IconAndText>
-            <Line to={`/dash/blog`}></Line>
+            <Line to={`/dash/art/booked`}></Line>
           </NavAndIcon>
-          <NavAndIcon to={`/`}>
+          {/* <NavAndIcon to={`/`}>
             <IconAndText>
-              {/* <MdLogout /> */}
+              <MdLogout />
               <Text>Logout</Text>
             </IconAndText>
             <Line to={`/`}></Line>
-          </NavAndIcon>
+          </NavAndIcon> */}
         </NavHolder>
         <Image src={img} />
       </Wrapper>

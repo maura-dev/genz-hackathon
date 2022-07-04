@@ -1,39 +1,40 @@
-// import axios from 'axios';
+import axios from 'axios';
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { BiNetworkChart, BiSearch } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
 import { GrUserWorker } from 'react-icons/gr';
 import { MdWork } from 'react-icons/md';
-import { 
-    useNavigate,
-    //  useParams
- } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
 import img from '../images/man.jpg';
 import DashNav from './DashNav';
 
-const DashSearchHandy = () => {
-//   const { skill } = useParams();
+const DashSearchHandy = ({ user }) => {
+  const { skill } = useParams();
   const [search, setSearch] = React.useState('');
 
   const navigate = useNavigate();
 
-//   const [allData, setAllData] = React.useState([]);
+  const [allData, setAllData] = React.useState([]);
 
+  //   const [locationData, setLocationData] = React.useState([]);
 
-//   const [locationData, setLocationData] = React.useState([]);
-
-//   const fetchData = async () => {
-//     const config = {
-//       authorization: `Bearer ${''}`,
-//     };
-//     const url = 'http://artikapp.herokuapp.com';
-//     const res = await axios.get(`${url}/api/v1/artisan/find/${skill}`, config, {
-//       skill: search,
-//     });
-//     setAllData(res?.data);
-//   };
+  const fetchData = async () => {
+    const config = {
+      authorization: `Bearer ${user?.jwtToken}`,
+    };
+    const url = 'http://artikapp.herokuapp.com';
+    const res = await axios.get(
+      `${url}/api/v1/artisan/find/skill`,
+      {
+        skill: skill,
+      },
+      config
+    );
+    console.log(res);
+    setAllData(res?.data);
+  };
 
   //   const searchFunction = async () => {};
 
@@ -41,10 +42,10 @@ const DashSearchHandy = () => {
     navigate(`/beforehire/${'i'}`);
   };
 
-//   React.useEffect(() => {
-//     fetchData();
-//     // console.log(allData);
-//   }, []);
+  React.useEffect(() => {
+    fetchData();
+    // console.log(allData);
+  });
 
   return (
     <Container>
@@ -52,7 +53,7 @@ const DashSearchHandy = () => {
       <DashComp>
         <Container1>
           <Wrapper1>
-            <Name>All Engineerers</Name>
+            <Name>All {skill.toLocaleUpperCase()}S</Name>
             <SearchComp>
               <Input
                 placeholder="Search By Location"
@@ -69,46 +70,47 @@ const DashSearchHandy = () => {
         </Container1>
         <DashWrapper>
           <FirstCardHolder>
-            {/* {allData?.map(props => ( */}
-            <Card>
-              <Image src={img} />
-              <ClientDetails>
-                <IconAndText>
-                  <GrUserWorker fontSize="18px" backgroundColor="blue" />
-                  <Text>
-                    <b>Confidence Efem</b>
-                  </Text>
-                </IconAndText>
-                <IconAndText>
-                  <MdWork fontSize="18px" />
-                  <Text>10 Jobs completed</Text>
-                </IconAndText>
-                <IconAndText>
-                  <BiNetworkChart fontSize="18px" />
-                  <Text>Electrical Engineerer</Text>
-                </IconAndText>
-                <IconAndText>
-                  <GoLocation fontSize="18px" />
-                  <Text>10 Jobs completed</Text>
-                </IconAndText>
-                <RatingAndButton>
-                  <RatingHolder>
-                    <AiFillStar color="#3ddabe" fontSize="20px" />
-                    <AiFillStar color="#3ddabe" fontSize="20px" />
-                    <AiFillStar color="#3ddabe" fontSize="20px" />
-                    <AiFillStar color="#3ddabe" fontSize="20px" />
-                  </RatingHolder>
-                  <HireButton
-                    onClick={() => {
-                      onToggle('i');
-                    }}
-                  >
-                    Hire Me
-                  </HireButton>
-                </RatingAndButton>
-              </ClientDetails>
-            </Card>
-            {/* ))} */}
+            {allData?.map((props, i) => (
+              <Card>
+                <Image src={img} />
+                <ClientDetails>
+                  <IconAndText>
+                    <GrUserWorker fontSize="18px" backgroundColor="blue" />
+                    <Text>
+                      <b>Confidence Efem</b>
+                    </Text>
+                  </IconAndText>
+                  <IconAndText>
+                    <MdWork fontSize="18px" />
+                    <Text>10 Jobs completed</Text>
+                  </IconAndText>
+                  <IconAndText>
+                    <BiNetworkChart fontSize="18px" />
+                    <Text>Electrical Engineerer</Text>
+                  </IconAndText>
+                  <IconAndText>
+                    <GoLocation fontSize="18px" />
+                    <Text>10 Jobs completed</Text>
+                  </IconAndText>
+                  <RatingAndButton>
+                    <RatingHolder>
+                      <AiFillStar color="#3ddabe" fontSize="20px" />
+                      <AiFillStar color="#3ddabe" fontSize="20px" />
+                      <AiFillStar color="#3ddabe" fontSize="20px" />
+                      <AiFillStar color="#3ddabe" fontSize="20px" />
+                    </RatingHolder>
+                    <HireButton
+                      onClick={() => {
+                        onToggle('i');
+                        navigate(`/beforehire/${'id'}/${skill}`);
+                      }}
+                    >
+                      Hire Me
+                    </HireButton>
+                  </RatingAndButton>
+                </ClientDetails>
+              </Card>
+            ))}
           </FirstCardHolder>
         </DashWrapper>
       </DashComp>

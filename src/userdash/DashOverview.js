@@ -21,12 +21,12 @@ const DashOverview = ({ user, setUser }) => {
       config
     );
     // console.log(res);
-    setData(res.data);
+    setData(res?.data);
   };
   useEffect(() => {
     fetchData();
     console.log(data);
-  }, [data]);
+  });
 
   return (
     <Container>
@@ -41,7 +41,8 @@ const DashOverview = ({ user, setUser }) => {
                   <TotalText>Complete Profile</TotalText>
                   <Amoutn>20</Amoutn>
                   <Join>
-                    <span>Joined:</span>3days ago
+                    <span>Joined: </span>{' '}
+                    {moment(user?.user?.createdAt).fromNow()}
                   </Join>
                 </TextContents>
                 <IconShow>25%</IconShow>
@@ -53,7 +54,8 @@ const DashOverview = ({ user, setUser }) => {
                   <TotalText>Total Jobs Posted</TotalText>
                   <Amoutn>{data?.length}</Amoutn>
                   <Join>
-                    <span>Recent:</span>5days ago
+                    <span>Recent:</span>
+                    {moment(data[data?.length - 1]?.createdAt).fromNow()}
                   </Join>
                 </TextContents>
                 <IconShow />
@@ -74,16 +76,18 @@ const DashOverview = ({ user, setUser }) => {
           </FirstCardHolder>
           <SecondCardHolder>
             <SecondTitle>Recent Posted Jobs</SecondTitle>
-            {data?.map(props => (
-              <SecondCard>
-                {/* <SecondImage src={} /> */}
-                <ClientName>{props?.jobDetails}</ClientName>
-                <ProjectName>
-                  Deadline:{moment(props?.deadline).fromNow()}
-                </ProjectName>
-                <Amount>${props.cost}</Amount>
-              </SecondCard>
-            ))}
+            {data?.map((props, i) =>
+              i < 2 ? (
+                <SecondCard>
+                  {/* <SecondImage src={} /> */}
+                  <ClientName>{props?.jobDetails}</ClientName>
+                  <ProjectName>
+                    Deadline:{moment(props?.deadline).fromNow()}
+                  </ProjectName>
+                  <Amount>${props.cost}</Amount>
+                </SecondCard>
+              ) : null
+            )}
           </SecondCardHolder>
         </DashWrapper>
       </DashComp>

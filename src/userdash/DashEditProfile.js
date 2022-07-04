@@ -3,22 +3,68 @@ import React from 'react';
 import DashNav from './DashNav';
 import DashHeader from './DashHeader';
 import styled from 'styled-components';
-const DashEditProfile = () => {
-  const [FirstName, setFirstName] = React.useState('');
-  const [LastName, setLastName] = React.useState('');
-  const [City, setCity] = React.useState('');
-  const [State, setState] = React.useState('');
-  const [Phone, setPone] = React.useState('');
+import axios from 'axios';
+import Swal from 'sweetalert2';
+const DashEditProfile = ({ user }) => {
+  console.log(user?.jwtToken);
+
+  const [FirstName, setFirstName] = React.useState(user?.user?.firstName || '');
+  const [LastName, setLastName] = React.useState(user?.user?.lastName || '');
+  const [City, setCity] = React.useState(user?.user?.city || '');
+  const [State, setState] = React.useState(user?.user?.state || '');
+  const [Phone, setPone] = React.useState(user?.user?.phone || '');
 
   const onSubmitForm = async () => {
     console.log(FirstName, LastName, City, State, Phone);
 
-    setFirstName('');
-    setLastName('');
-    setCity('');
-    setState('');
-    setPone('');
+    try {
+      const url = 'http://artikapp.herokuapp.com';
+      const config = {
+        headers: {
+          authorization: `Bearer ${user?.jwtToken}`,
+        },
+      };
+      const res = await axios.put(
+        `${url}/api/v1/auth/update-user/user`,
+        {
+          firstName: FirstName,
+          lastName: LastName,
+          city: City,
+          state: State,
+          phone: Phone,
+        },
+        config
+      );
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: 'User Profile Updated Successfully',
+          // text: 'Input your Datas',
+          timer: 2500,
+          showConfirmButton: true,
+        });
+      }
+      console.log(res.data);
+      localStorage.setItem(
+        'artikLoggedUser',
+        JSON.stringify({ jwtToken: user?.jwtToken, user: res.data })
+      );
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to edit profile',
+        text: error,
+        timer: 2500,
+        showConfirmButton: true,
+      });
+    }
   };
+
+  // setFirstName('');
+  // setLastName('');
+  // setCity('');
+  // setState('');
+  // setPone('');
 
   return (
     <Container>
@@ -83,7 +129,7 @@ const DashEditProfile = () => {
                 onSubmitForm();
               }}
             >
-              Edit Profile
+              Update Profile
             </Button>
           </Form>
         </DashWrapper>

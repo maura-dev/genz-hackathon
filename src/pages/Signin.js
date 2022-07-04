@@ -75,7 +75,7 @@ const SignIn = ({ setUser }) => {
             })
               .then(response => response.text())
               .then(res => {
-                // console.log(res)
+                console.log(res);
                 localStorage.setItem('artikLoggedUser', res);
                 setUser(res);
                 toast({

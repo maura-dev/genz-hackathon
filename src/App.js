@@ -16,10 +16,12 @@ import DashSearchHandy from './userdash/DashSearchHandy';
 import BeforeHiring from './userdash/BeforeHiring';
 import ArtisianOverview from './artisiandash/DashOverview';
 import DashArtBooked from './artisiandash/DashArtBooked';
+import ArtisianEditProfile from './artisiandash/DashEditProfile';
 
 function App() {
   const background = useColorModeValue('bg', 'BlackAlpha 700');
   const [user, setUser] = useState({});
+
   useEffect(() => {
     const l = localStorage.getItem('artikLoggedUser');
     if (l) {
@@ -79,18 +81,23 @@ function App() {
             <Route exact path="/artisans" element={<Artisans />} />
             <Route
               exact
-              path="/beforehire/:id"
+              path="/beforehire/:id/:skill"
               element={<BeforeHiring user={user} setUser={setUser} />}
             />
             <Route
               exact
-              path="/art"
+              path="/art/overview"
               element={<ArtisianOverview user={user} setUser={setUser} />}
             />
             <Route
               exact
-              path="/all-booked"
+              path="/art/all-booked"
               element={<DashArtBooked user={user} setUser={setUser} />}
+            />
+            <Route
+              exact
+              path="/dash/art/editprofile"
+              element={<ArtisianEditProfile user={user} setUser={setUser} />}
             />
           </Routes>
         </Grid>
