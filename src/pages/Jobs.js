@@ -13,7 +13,7 @@ const Jobs = () => {
     //   },
     // };
     const res = await axios.get(
-      `http://artikapp.herokuapp.com/api/v1/job/all-job`
+      `http://artikapp.herokuapp.com/api/v1/job/all-jobs`
       // config
     );
     // console.log(res);
