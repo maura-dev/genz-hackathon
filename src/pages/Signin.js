@@ -75,7 +75,7 @@ const SignIn = ({ setUser }) => {
             })
               .then(response => response.json())
               .then(res => {
-                // console.log(res)
+               console.log(res)
                 localStorage.setItem('artikLoggedUser', JSON.stringify(res));
                 setUser(res);
                 toast({
@@ -93,10 +93,10 @@ const SignIn = ({ setUser }) => {
                 window.location.reload();
               })
               .catch(err => {
-                // console.log(err)
+                console.log(err)
                 toast({
                   title: 'Opps!',
-                  description: err,
+                  description: err.message,
                   status: 'error',
                   duration: 3000,
                   isClosable: true,
