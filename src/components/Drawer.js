@@ -42,7 +42,7 @@ const SideDrawer = ({isOpen, onClose, btnRef, user, handleLogout}) =>  {
                 <hr/>
               </> : null
             }
-              <Link to="/register" onClick={onClose}><Text mb={5} mt={5}>Register</Text></Link> 
+              {user && user.jwtToken ? null : <Link to="/register" onClick={onClose}><Text mb={5} mt={5}>Register</Text></Link> }
               <Link to="/artisans" onClick={onClose}><Text mb={5}>Artisans</Text></Link>
               <Link to="/jobs" onClick={onClose}><Text mb={5}>Jobs</Text></Link> 
               {user && user.jwtToken ? 

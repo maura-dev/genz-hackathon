@@ -75,22 +75,35 @@ const SignIn = ({ setUser }) => {
             })
               .then(response => response.json())
               .then(res => {
-               console.log(res)
-                localStorage.setItem('artikLoggedUser', JSON.stringify(res));
-                setUser(res);
-                toast({
-                  title: 'Successful',
-                  description: 'You are logged into your Artik account',
-                  status: 'success',
-                  duration: 2000,
+               //according to backend response
+               if(res?.user){
+                    localStorage.setItem('artikLoggedUser', JSON.stringify(res));
+                    setUser(res);
+                    setSubmitting(false);
+                    resetForm();
+                    res?.user && res?.user?.isArtisan
+                      ? navigate('/art/overview')
+                      : navigate('/dash/overview');
+                    window.location.reload();
+                    
+                    toast({
+                      title: 'Successful',
+                      description: 'You are logged into your Artik account',
+                      status: 'success',
+                      duration: 2000,
+                      isClosable: true,
+                    });
+                   
+               } else{
+                  toast({
+                  title: 'Opps!',
+                  description: "Invalid username or password",
+                  status: 'error',
+                  duration: 3000,
                   isClosable: true,
-                });
-                setSubmitting(false);
-                resetForm();
-                res.user.isArtisan
-                  ? navigate('/art/overview')
-                  : navigate('/dash/overview');
-                window.location.reload();
+                 });
+               }
+                
               })
               .catch(err => {
                 console.log(err)
