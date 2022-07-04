@@ -158,7 +158,7 @@ const SignUp = () => {
 									'Content-Type':'application/json'
 								}
 							})
-							.then(res => res.json())
+							.then(res => {console.log(res.json()); res.json()})
 							.then(res => {
 								toast({
 									title:"Successful",
