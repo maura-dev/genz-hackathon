@@ -1,25 +1,35 @@
-import React from // useState
-'react';
+import React, {
+  useEffect,
+  useState, // useState
+} from 'react';
 
 import DashNav from './DashNav';
 import DashHeader from './DashHeader';
 import styled from 'styled-components';
 import img from '../images/man.jpg';
+import axios from 'axios';
 // import axios from 'axios';
 
-const DashBlogPage = () => {
-  // const [data,setData] = useState([])
+const DashBlogPage = ({ user }) => {
+  const [data, setData] = useState([]);
 
-  // const fetchData = async () => {
-  //   const url = "http://artikapp.herokuapp.com"
-  //   const res = await axios.get(`${url}/`)
-  //   setData(res)
-  // }
-
-  // React.useEffect(()=>{
-  //   fetchData()
-  //   console.log(data)
-  // },[])
+  const fetchData = async () => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user?.jwtToken}`,
+      },
+    };
+    const res = await axios.get(
+      `http://artikapp.herokuapp.com/api/v1/job/all-job`,
+      config
+    );
+    // console.log(res);
+    setData(res.data);
+  };
+  useEffect(() => {
+    fetchData();
+    console.log(data);
+  }, [data]);
   return (
     <Container>
       <DashNav />

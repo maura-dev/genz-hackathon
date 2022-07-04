@@ -5,6 +5,25 @@ import img from '../images/man.jpg';
 import DashNav from './DashNav';
 
 const ArtisianOverview = () => {
+  // const [data, setData] = useState([]);
+
+  // const fetchData = async () => {
+  //   const config = {
+  //     headers: {
+  //       authorization: `Bearer ${user?.jwtToken}`,
+  //     },
+  //   };
+  //   const res = await axios.get(
+  //     `http://artikapp.herokuapp.com/api/v1/job/all-job`,
+  //     config
+  //   );
+  //   // console.log(res);
+  //   setData(res?.data);
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  //   console.log(data);
+  // }, [data]);
   return (
     <Container>
       <DashNav />

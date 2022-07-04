@@ -30,7 +30,7 @@ const DashService = () => {
             <Card
               onClick={() => {
                 // searchSkillFunction();
-                navigate(`/dash/allskill/engineer`);
+                navigate(`/dash/allskill/engineerer`);
               }}
             >
               <Image src={img7} />

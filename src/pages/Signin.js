@@ -87,7 +87,9 @@ const SignIn = ({ setUser }) => {
                 });
                 setSubmitting(false);
                 resetForm();
-                res.user.isArtisan ? navigate('/art/overview') : navigate('/dash/overview');
+                res.user.isArtisan
+                  ? navigate('/art/overview')
+                  : navigate('/dash/overview');
                 window.location.reload();
               })
               .catch(err => {
