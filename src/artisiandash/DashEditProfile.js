@@ -23,7 +23,7 @@ const ArtisianEditProfile = ({ user }) => {
     console.log(FirstName, LastName, skill, experience, address, Phone);
 
     try {
-      const url = 'http://artikapp.herokuapp.com';
+      const url = 'https://artikapp.herokuapp.com';
       const config = {
         headers: {
           authorization: `Bearer ${user?.jwtToken}`,
@@ -35,7 +35,7 @@ const ArtisianEditProfile = ({ user }) => {
           firstName: FirstName,
           lastName: LastName,
           phone: Phone,
-          skill: skill,
+          skill: skill.toLowerCase(),
           experience: experience,
           workshopAddress: address,
         },

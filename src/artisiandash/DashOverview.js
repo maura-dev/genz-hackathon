@@ -1,34 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DashHeader from './DashHeader';
 import img from '../images/man.jpg';
 import DashNav from './DashNav';
+import axios from 'axios';
+import moment from 'moment';
 
-const ArtisianOverview = () => {
-  // const [data, setData] = useState([]);
+const ArtisianOverview = ({ user }) => {
+  const [data, setData] = useState([]);
 
-  // const fetchData = async () => {
-  //   const config = {
-  //     headers: {
-  //       authorization: `Bearer ${user?.jwtToken}`,
-  //     },
-  //   };
-  //   const res = await axios.get(
-  //     `http://artikapp.herokuapp.com/api/v1/job/all-job`,
-  //     config
-  //   );
-  //   // console.log(res);
-  //   setData(res?.data);
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  //   console.log(data);
-  // }, [data]);
+  const fetchData = async () => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user?.jwtToken}`,
+      },
+    };
+    const res = await axios.get(
+      `https://artikapp.herokuapp.com/api/v1/job/all-job`,
+      config
+    );
+    // console.log(res);
+    setData(res?.data);
+  };
+  useEffect(() => {
+    fetchData();
+    console.log(data);
+  });
   return (
     <Container>
       <DashNav />
       <DashComp>
-        <DashHeader />
+        <DashHeader user={user} />
         <DashWrapper>
           <FirstCardHolder>
             <Card>
@@ -37,7 +39,8 @@ const ArtisianOverview = () => {
                   <TotalText>Complete Profile</TotalText>
                   <Amoutn>20</Amoutn>
                   <Join>
-                    <span>Joined:</span>3days ago
+                    <span>Joined:</span>
+                    {moment(user?.user?.createdAt).fromNow()}
                   </Join>
                 </TextContents>
                 <IconShow></IconShow>

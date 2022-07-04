@@ -41,7 +41,7 @@ const DashPostJob = ({ user }) => {
           },
         };
 
-        const url = 'http://artikapp.herokuapp.com';
+        const url = 'https://artikapp.herokuapp.com';
         const res = await axios.post(
           `${url}/api/v1/auth/post-job`,
           {

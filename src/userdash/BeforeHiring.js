@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
 
-const BeforeHiring = () => {
+const BeforeHiring = ({ user }) => {
   const { id, skill } = useParams();
   const navigate = useNavigate();
   const [location, setLocation] = React.useState('');
@@ -27,14 +27,16 @@ const BeforeHiring = () => {
       });
     } else {
       try {
-        const url = 'http://artikapp.herokuapp.com';
+        const url = 'https://artikapp.herokuapp.com';
         const config = {
-          authorization: `Bearer ${''}`,
+          headers: {
+            authorization: `Bearer ${user?.jwtToken}`,
+          },
         };
         const res = await axios.post(
           `${url}/api/v1/auth/book-artisan/${id}`,
-          config,
-          { location, budgetCost: cost, clientAddress: address, detail }
+          { location, budgetCost: cost, clientAddress: address, detail },
+          config
         );
         if (res) {
           Swal.fire({
@@ -43,6 +45,8 @@ const BeforeHiring = () => {
             // text: 'Input your Datas',
             timer: 2500,
             showConfirmButton: true,
+          }).then(() => {
+            navigate(`/dash/overview`);
           });
         }
         console.log(res);
@@ -57,10 +61,10 @@ const BeforeHiring = () => {
       }
     }
 
-    setDetail('');
-    setLocation('');
-    setAddress('');
-    setCost('');
+    // setDetail('');
+    // setLocation('');
+    // setAddress('');
+    // setCost('');
   };
 
   return (

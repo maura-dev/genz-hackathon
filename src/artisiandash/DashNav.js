@@ -26,12 +26,12 @@ const ArtisianNav = () => {
             </IconAndText>
             <Line to={`/dash/art/editprofile`}></Line>
           </NavAndIcon>
-          <NavAndIcon to={`/dash/art/booked`}>
+          <NavAndIcon to={`/art/all-booked`}>
             <IconAndText>
               <AiTwotoneFile />
               <Text>View Booked Page</Text>
             </IconAndText>
-            <Line to={`/dash/art/booked`}></Line>
+            <Line to={`/art/all-booked`}></Line>
           </NavAndIcon>
           {/* <NavAndIcon to={`/`}>
             <IconAndText>

@@ -13,23 +13,23 @@ import axios from 'axios';
 const DashBlogPage = ({ user }) => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const config = {
-        headers: {
-          authorization: `Bearer ${user?.jwtToken}`,
-        },
-      };
-      const res = await axios.get(
-        `http://artikapp.herokuapp.com/api/v1/job/all-job`,
-        config
-      );
-      // console.log(res);
-      setData(res.data);
+  const fetchData = async () => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${user?.jwtToken}`,
+      },
     };
+    const res = await axios.get(
+      `https://artikapp.herokuapp.com/api/v1/job/all-job`,
+      config
+    );
+    // console.log(res);
+    setData(res.data);
+  };
+  useEffect(() => {
     fetchData();
     console.log(data);
-  }, [data, user]);
+  });
   return (
     <Container>
       <DashNav />

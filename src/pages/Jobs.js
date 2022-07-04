@@ -7,14 +7,14 @@ const Jobs = () => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const config = {
-      headers: {
-        authorization: ``,
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     authorization: ``,
+    //   },
+    // };
     const res = await axios.get(
-      `http://artikapp.herokuapp.com/api/v1/job/all-job`,
-      config
+      `http://artikapp.herokuapp.com/api/v1/job/all-job`
+      // config
     );
     // console.log(res);
     setData(res.data);
