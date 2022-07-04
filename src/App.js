@@ -79,13 +79,13 @@ function App() {
             />
             <Route
               exact
-              path="/dash/allskill/:skill"
+              path="/dash/allskill"
               element={<DashSearchHandy user={user} setUser={setUser} />}
             />
             <Route exact path="/artisans" element={<Artisans user={user} />} />
             <Route
               exact
-              path="/beforehire/:id/:skill"
+              path="/beforehire/:id"
               element={<BeforeHiring user={user} setUser={setUser} />}
             />
             <Route

@@ -58,6 +58,7 @@ const Artisans = ({ user }) => {
               verifyUser={artisan?.isVerify}
               isArtisian={artisan?.isArtisan}
               user={user}
+              mainId={artisan._id}
               location={`${artisan.city} ${artisan.state}`}
             />
           ))}

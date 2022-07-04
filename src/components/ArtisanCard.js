@@ -22,6 +22,7 @@ const ArtisanCard = ({
   location,
   verifyUser,
   isArtisian,
+  mainId,
   user,
   ...props
 }) => {
@@ -29,11 +30,8 @@ const ArtisanCard = ({
   const alt = useColorModeValue('white', 'black');
   const reRouteUser = async () => {
     if (user) {
-      if (verifyUser) {
-        navigate(`/dash/allservices`);
-      } else {
-        navigate(`/login`);
-      }
+      navigate(`/beforehire/${mainId}`);
+      console.log(mainId);
     } else {
       navigate(`/login`);
     }

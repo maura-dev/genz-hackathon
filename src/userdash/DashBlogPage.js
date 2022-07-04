@@ -50,7 +50,7 @@ const DashBlogPage = ({ user }) => {
                 <HiredDate>
                   Hired: <span>{moment(props?.createdAt).fromNow()}</span>
                 </HiredDate>
-                <Amount>${props?.budgetCost}</Amount>
+                <Amount>N{props?.budgetCost}</Amount>
                 {props?.isAccepted ? (
                   <PendingButton
                     style={{ backgroundColor: '#3ddabe', color: 'black' }}

@@ -61,7 +61,7 @@ const DashViewJobs = ({ user }) => {
                 <ProjectName>
                   Deadline:{moment(props?.deadline).fromNow()}
                 </ProjectName>
-                <Amount>${props.cost}</Amount>
+                <Amount>N{props.cost}</Amount>
                 <DeleteIcon
                   onClick={() => {
                     deleteJob(props._id);

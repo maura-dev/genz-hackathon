@@ -112,7 +112,7 @@ const ArtisianOverview = ({ user }) => {
                   <HiredDate>
                     Address: <span>{props.clientAddress}</span>
                   </HiredDate>
-                  <Amount>${props?.budgetCost}</Amount>
+                  <Amount>N{props?.budgetCost}</Amount>
                   {props?.isAccepted ? (
                     <PendingButton
                       style={{

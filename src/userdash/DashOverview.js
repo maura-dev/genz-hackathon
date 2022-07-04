@@ -92,7 +92,7 @@ const DashOverview = ({ user, setUser }) => {
                   <ProjectName>
                     Deadline:{moment(props?.deadline).fromNow()}
                   </ProjectName>
-                  <Amount>${props.cost}</Amount>
+                  <Amount>N{props.cost}</Amount>
                 </SecondCard>
               ) : null
             )}

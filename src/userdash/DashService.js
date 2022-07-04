@@ -25,7 +25,7 @@ const DashService = () => {
           <CardHolder>
             <Card
               onClick={() => {
-                navigate(`/dash/allskill/engineerer`);
+                navigate(`/dash/allskill`);
               }}
             >
               <Image src={img7} />
@@ -39,7 +39,7 @@ const DashService = () => {
             </Card>
             <Card
               onClick={() => {
-                navigate(`/dash/allskill/plumber`);
+                navigate(`/dash/allskill`);
               }}
             >
               <Image src={img1} />
@@ -51,7 +51,7 @@ const DashService = () => {
             </Card>
             <Card
               onClick={() => {
-                navigate(`/dash/allskill/carpentar`);
+                navigate(`/dash/allskill`);
               }}
             >
               <Image src={img3} />
@@ -65,7 +65,7 @@ const DashService = () => {
             </Card>
             <Card
               onClick={() => {
-                navigate(`/dash/allskill/mechanic`);
+                navigate(`/dash/allskill`);
               }}
             >
               <Image src={img8} />
@@ -78,7 +78,7 @@ const DashService = () => {
 
             <Card
               onClick={() => {
-                navigate(`/dash/allskill/painter`);
+                navigate(`/dash/allskill`);
               }}
             >
               <Image src={img9} />

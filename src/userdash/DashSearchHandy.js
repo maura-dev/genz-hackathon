@@ -10,9 +10,6 @@ import img from '../images/man.jpg';
 import DashNav from './DashNav';
 
 const DashSearchHandy = ({ user }) => {
-  //skill is coming from the all service page
-  const { skill } = useParams();
-
   const [search, setSearch] = React.useState('');
 
   const navigate = useNavigate();
@@ -35,7 +32,7 @@ const DashSearchHandy = ({ user }) => {
       <DashComp>
         <Container1>
           <Wrapper1>
-            <Name>All {skill.toLocaleUpperCase()}S</Name>
+            <Name>All Artisians</Name>
             <SearchComp>
               <Input
                 placeholder="Search By Location"
@@ -91,7 +88,7 @@ const DashSearchHandy = ({ user }) => {
                       <HireButton
                         onClick={() => {
                           // onToggle('i');
-                          navigate(`/beforehire/${props?._id}/${skill}`);
+                          navigate(`/beforehire/${props?._id}`);
                         }}
                       >
                         Hire Me

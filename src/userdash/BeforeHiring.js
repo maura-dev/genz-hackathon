@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
 
 const BeforeHiring = ({ user }) => {
-  const { id, skill } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [location, setLocation] = React.useState('');
   const [cost, setCost] = React.useState();
@@ -70,7 +70,7 @@ const BeforeHiring = ({ user }) => {
             <Cancel>
               <Circle
                 onClick={() => {
-                  navigate(`/dash/allskill/${skill}`);
+                  navigate(`/dash/allskill`);
                 }}
               >
                 <AiOutlineClose fontSize="17px" cursor="pointer" to="/" />
