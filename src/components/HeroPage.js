@@ -43,6 +43,16 @@ position: absolute;
 top: -70px;
 left: 0px;
 border-radius: 50%;
+@media screen and (max-width: 1000px){
+    width: 400px;
+    height:500px;
+    top: -90px;
+  }
+
+  @media screen and (max-width: 540px){
+    width: 300px;
+    height: 400px;
+  }
 `
 
 const Button1 = styled.div`
@@ -102,6 +112,9 @@ const LeftWrapper = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 570px){
+height: 100%;
+  }
 `;
 const Right = styled.div`
 width: 500px;
@@ -110,6 +123,15 @@ border-radius: 50%;
 background: #3ddabe;
 position: relative;
 top: 0;
+
+@media screen and (max-width: 1000px){
+    width: 400px;
+    height: 400px;
+  }
+@media screen and (max-width: 540px){
+    width: 300px;
+    height: 300px;
+  }
 `;
 const Left = styled.div`
   width: 390px;
@@ -121,20 +143,44 @@ const Left = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+
+  @media screen and (max-width: 1000px){
+    width: 350px;
+  }
+
+  @media screen and (max-width: 840px){
+margin-top: 30px;
+width: 500px;
+margin-bottom: 20px;
+height: 390px;
+  }
+  @media screen and (max-width: 570px){
+width: 95%;
+height: auto;
+  }
+
 `;
 const Wrapper = styled.div`
   width: 78%;
   display: flex;
-  /* background: blue; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background:red; */
+  margin-top: 100px;
+  @media screen and (max-width: 1163px){
+    width: 90%;
+  }
+  @media screen and (max-width: 840px){
+   flex-wrap: wrap;
+   justify-content: center;
+   flex-direction: column-reverse;
+  }
+
 `;
 const Container = styled.div`
   width: 100%;
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   justify-content: center;
   /* justify-content: flex-end; */
   // font-family: poppins;

@@ -127,12 +127,18 @@ const Card = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  @media screen and (max-width: 1000px){
+  width: 280px;
+  }
 `;
 const CardHolder = styled.div`
   width: 100%;
   display: flex;
   margin-top: 40px;
   flex-wrap: wrap;
+  @media screen and (max-width: 700px){
+  justify-content: center;
+  }
 `;
 const Line = styled.div`
   /* border: 3px solid #3ddabe; */
@@ -158,6 +164,9 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   height: 80%;
+  @media screen and (max-width: 1100px){
+    width: 90%;
+  }
 `;
 const Container = styled.div`
   width: 100%;

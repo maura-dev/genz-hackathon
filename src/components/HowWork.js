@@ -65,6 +65,9 @@ const CardHolder = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin: 50px 0;
+  @media screen and (max-width: 450px){
+    
+  }
 `;
 const Line = styled.div`
   width: 50px;
@@ -88,7 +91,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 90%;
+  /* height: 90%; */
+  @media screen and (max-width: 800px){
+    width: 90%;
+  }
 `;
 const Container = styled.div`
   width: 100%;

@@ -108,7 +108,11 @@ const IconAndText = styled.div`
   margin-bottom: 30px ;
   margin-top: 5px ;
 `;
-const Detail = styled.div``;
+const Detail = styled.div`
+  @media screen and (max-width: 1010px){
+display:none;
+  }
+`;
 const Input = styled.input`
   width: 300px;
   height: 45px;
@@ -123,17 +127,28 @@ const Input = styled.input`
     font-family: poppins;
     color: black;
   }
+
+  @media screen and (max-width: 770px){
+width: 100%;
+height: 47x;  }
 `;
 const MiddleLine = styled.div`
   margin: 0 30px;
   width: 5px;
   height: 90%;
   background-color: gray;
+  @media screen and (max-width: 1010px){
+display:none;
+  }
 `;
 const InputHold = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 770px){
+width: 100%;
+align-items: flex-start;
+  }
 `;
 const InputHoldAndDetails = styled.div`
   width: 100%;
@@ -162,6 +177,9 @@ const ContactMainCard = styled.div`
   display: flex;
   width: 65%;
   justify-content: center;
+  @media screen and (max-width: 770px){
+width: 80%;
+  }
 `;
 const Over = styled.div`
   position: absolute;
@@ -185,16 +203,23 @@ const ImageHold = styled.div`
   position: relative;
   /* top: 0; */
   margin-right: 30px;
+  @media screen and (max-width: 1010px){
+width:600px;
+  }
+  @media screen and (max-width: 850px){
+width:400px;
+  }
+  @media screen and (max-width: 770px){
+display:none;
+  }
 `;
 const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-height: 84vh; */
-  height: 85vh;
-  // font-family: poppins;
-  /* margin-top: 30px; */
+  height: auto;
+  margin-bottom: 30px;
 `;
 const Wrapper = styled.div`
   width: 80%;
@@ -205,4 +230,13 @@ const Wrapper = styled.div`
   height: 500px;
   border-radius: 20px;
   overflow: hidden;
+  @media screen and (max-width: 1300px){
+width: 90%;
+  }
+  @media screen and (max-width: 850px){
+height:450px;
+  }
+  @media screen and (max-width: 770px){
+justify-content: center;
+  }
 `;
