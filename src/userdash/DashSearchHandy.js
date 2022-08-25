@@ -4,7 +4,7 @@ import { BiNetworkChart, BiSearch } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
 import { GrUserWorker } from 'react-icons/gr';
 import { MdWork } from 'react-icons/md';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import img from '../images/man.jpg';
 import DashNav from './DashNav';
